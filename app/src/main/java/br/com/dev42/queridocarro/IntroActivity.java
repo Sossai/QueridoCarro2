@@ -71,6 +71,7 @@ public class IntroActivity extends FragmentActivity {
                 page1.setBackground(ContextCompat.getDrawable(IntroActivity.this,R.drawable.page_off));
                 page2.setBackground(ContextCompat.getDrawable(IntroActivity.this,R.drawable.page_on));
                 page3.setBackground(ContextCompat.getDrawable(IntroActivity.this,R.drawable.page_off));
+
                 break;
             case 2:
                 page1.setBackground(ContextCompat.getDrawable(IntroActivity.this,R.drawable.page_off));

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -31,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/page_on"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center" />
 
         <ImageView
             android:id="@+id/page2"
@@ -39,7 +38,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/page_off"
             android:layout_marginLeft="2dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center" />
 
         <ImageView
             android:id="@+id/page3"
@@ -47,13 +46,13 @@
             android:layout_height="wrap_content"
             android:background="@drawable/page_off"
             android:layout_marginLeft="2dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center" />
     </LinearLayout>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Vamos Lá!"
+        android:text="@string/vamos_la_intro"
         android:background="@color/colorAzulDestaque"
         android:textColor="@color/colorBranco"/>
 
