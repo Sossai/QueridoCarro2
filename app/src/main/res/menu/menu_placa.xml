@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="br.com.dev42.queridocarro.activities.MainActivity">
+    <item
+        android:id="@+id/action_ok"
+        android:orderInCategory="100"
+        android:title="@string/buscar_placa"
+        app:showAsAction="always" />
+</menu>

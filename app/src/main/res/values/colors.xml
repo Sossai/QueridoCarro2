@@ -7,4 +7,7 @@
     <color name="colorAzulDestaque">#104695</color>
     <color name="colorFundoBase">#f1f2f7</color>
     <color name="colorBranco">#ffffff</color>
+    <color name="sombraQC">#42000000</color>
+    <color name="colorContraste">#f1f1f1</color>
+    <color name="colorPreto">#000000</color>
 </resources>

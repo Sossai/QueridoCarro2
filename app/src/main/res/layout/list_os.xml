@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorBranco"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
+
+    <Button
+        android:id="@+id/sigla_oficina"
+        android:layout_height="40dp"
+        android:layout_width="40dp"
+        android:background="@drawable/circulo_list"
+        android:text="S"
+        android:textSize="25sp"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/colorBranco"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/sigla_oficina"
+        android:layout_marginLeft="16dp"
+        android:layout_centerVertical="true">
+
+        <TextView
+            android:id="@+id/nomeOficina"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="OFICINA DO ZELAO"
+            android:textStyle="bold"
+            android:textColor="@color/colorPreto"
+            android:layout_marginRight="60sp" />
+
+        <TextView
+            android:id="@+id/numeroOs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="OS/Venda : 1234"
+            android:textSize="10sp"
+            android:textColor="@color/colorPreto"
+            android:layout_below="@id/nomeOficina" />
+
+        <TextView
+            android:id="@+id/data_list_oficina"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="26/01/1978"
+            android:textSize="10sp"
+            android:gravity="right"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/colorPreto"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/ic_options"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/data_list_oficina"/>
+    </RelativeLayout>
+
+</RelativeLayout>

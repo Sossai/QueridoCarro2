@@ -1,25 +1,27 @@
-package br.com.dev42.queridocarro;
+package br.com.dev42.queridocarro.activities;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Switch;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.dev42.queridocarro.R;
 import br.com.dev42.queridocarro.adapters.FragmentListAdapter;
 import br.com.dev42.queridocarro.fragments.IntroFragment;
 
 public class IntroActivity extends FragmentActivity {
 
     private ImageView page1,page2,page3;
+    private Button btnInicio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,8 @@ public class IntroActivity extends FragmentActivity {
         page1 = (ImageView)findViewById(R.id.page1);
         page2 = (ImageView)findViewById(R.id.page2);
         page3 = (ImageView)findViewById(R.id.page3);
+
+        btnInicio = (Button)findViewById(R.id.btnInicio);
 
         List<Fragment> listaFragments = new ArrayList<>();
         listaFragments.add(Fragment.instantiate(this, IntroFragment.class.getName()));
@@ -56,6 +60,14 @@ public class IntroActivity extends FragmentActivity {
 
             @Override
             public void onPageScrollStateChanged(int state) {
+            }
+        });
+
+        btnInicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(IntroActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }

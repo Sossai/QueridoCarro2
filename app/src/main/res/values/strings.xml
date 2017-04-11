@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">QueridoCarro</string>
     <string name="vamos_la_intro">Vamos Lá!</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <string name="buscar_placa">Buscar</string>
+    <string name="erro_conexao">Erro ao acessar o servidor de dados.</string>
+    <string name="erro_retorno">Erro : %s</string>
+
+
 </resources>

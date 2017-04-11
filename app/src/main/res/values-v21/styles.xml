@@ -8,6 +8,9 @@
         <item name="colorAccent">@color/colorAzulDestaque</item>
         <item name="android:colorBackground">@color/colorFundoBase</item>
 
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowContentTransitions">true</item>
+
     </style>
 
     <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

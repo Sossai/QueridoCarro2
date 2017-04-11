@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="br.com.dev42.queridocarro.IntroActivity">
+    tools:context="br.com.dev42.queridocarro.activities.IntroActivity">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewp"
@@ -50,6 +50,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btnInicio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/vamos_la_intro"
