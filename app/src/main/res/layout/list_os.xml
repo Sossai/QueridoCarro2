@@ -17,7 +17,8 @@
         android:layout_centerVertical="true"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:textColor="@color/colorBranco"/>
+        android:textColor="@color/colorBranco"
+        android:focusable="false"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -57,8 +58,9 @@
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:background="@drawable/ic_options"
+            android:background="@drawable/ic_option_128_grey"
             android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
             android:layout_below="@id/data_list_oficina"/>
     </RelativeLayout>
 

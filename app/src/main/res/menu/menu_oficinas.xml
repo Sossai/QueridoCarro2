@@ -1,0 +1,28 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="br.com.dev42.queridocarro.activities.MainActivity">
+    <item
+        android:title="Geolocation"
+        android:id="@+id/id_menu_geolocation"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_menu_geolocation_white_72"
+        app:showAsAction="always" />
+    <item
+        android:title="Cep"
+        android:id="@+id/id_menu_cep"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_menu_cep_white_72"
+        app:showAsAction="always" />
+    <item
+        android:title="Location"
+        android:id="@+id/id_menu_location"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_menu_location_white_72"
+        app:showAsAction="always" />
+    <item
+        android:title="@string/buscar_placa"
+        android:id="@+id/id_menu_buscar"
+        android:orderInCategory="100"
+        app:showAsAction="always" />
+</menu>

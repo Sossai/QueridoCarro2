@@ -10,14 +10,14 @@ public class Historico {
 
     public static class Envio{
         private String Placa;
-        private String DtIni;
-        private String DtFim;
+        private String Dt;
+        private Integer Quantidade;
         private String Token;
 
-        public Envio(String placa, String dtIni, String dtFim, String token) {
+        public Envio(String placa, String dt, Integer quantidade, String token) {
             Placa = placa;
-            DtIni = dtIni;
-            DtFim = dtFim;
+            Dt = dt;
+            Quantidade = quantidade;
             Token = token;
         }
 
@@ -25,8 +25,8 @@ public class Historico {
         public String toString() {
             return "Envio{" +
                     "Placa='" + Placa + '\'' +
-                    ", DtIni='" + DtIni + '\'' +
-                    ", DtFim='" + DtFim + '\'' +
+                    ", Dt='" + Dt + '\'' +
+                    ", Quantidade=" + Quantidade +
                     ", Token='" + Token + '\'' +
                     '}';
         }

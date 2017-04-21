@@ -5,11 +5,18 @@
     android:layout_height="match_parent"
     tools:context="br.com.dev42.queridocarro.activities.ListaOsActivity">
 
-    <ListView
-        android:id="@+id/listaOsV"
+    <android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipe"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </ListView>
+
+        <ListView
+            android:id="@+id/listaOsV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </ListView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <include layout="@layout/frame_load"
         android:id="@+id/frameload"

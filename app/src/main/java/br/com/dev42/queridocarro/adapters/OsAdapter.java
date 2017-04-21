@@ -3,6 +3,7 @@ package br.com.dev42.queridocarro.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.nfc.Tag;
@@ -24,6 +25,7 @@ import java.util.Locale;
 
 import br.com.dev42.queridocarro.R;
 import br.com.dev42.queridocarro.activities.ListaOsActivity;
+import br.com.dev42.queridocarro.extra.CorSigla;
 import br.com.dev42.queridocarro.model.Historico;
 
 /**
@@ -75,14 +77,13 @@ public class OsAdapter extends BaseAdapter {
         holder.nomeOficina.setText(os.getOficina());
         holder.numeroOs.setText("Os/Venda : " + os.getNumVenda().toString());
         //holder.dataOs.setText(dataToTextData(os.getData()));
-        holder.dataOs.setText("26/01/1978");
+        holder.dataOs.setText(os.getData());
         holder.siglaOficina.setText(os.getOficina().substring(0,1).toUpperCase());
 //        holder.siglaOficina.setBackgroundColor(ContextCompat.getColor(activity, R.color.colorAmarelo));
 
         GradientDrawable shape = (GradientDrawable)holder.siglaOficina.getBackground();
-//        shape.setColor(ContextCompat.getColor(activity, R.color.colorAmarelo));
-
-        shape.setColor(Color.parseColor(escolheCor(os.getOficina().substring(0,1).toUpperCase())));
+//        shape.setColor(Color.parseColor(CorSigla.escolheCor(os.getOficina().substring(0,1).toUpperCase())));
+        shape.setColor(Color.parseColor(CorSigla.escolheCor(os.getOficina())));
         holder.siglaOficina.setBackground(shape);
 
         return layout;
@@ -101,7 +102,7 @@ public class OsAdapter extends BaseAdapter {
             this.siglaOficina = (Button)view.findViewById(R.id.sigla_oficina);
         }
     }
-
+/*
     private String escolheCor(String letra){
         String colorSring = "";
 
@@ -191,20 +192,5 @@ public class OsAdapter extends BaseAdapter {
         }
         return colorSring;
     }
-
-    /*
-    // ** REVER **
-    public String dataToTextData(String dataOsString){
-        SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-        try {
-            Date dataOs = format.parse(dataOsString);
-            Locale BRAZIL = new Locale("pt","BR");
-            SimpleDateFormat fmt = new SimpleDateFormat("dd 'de' MMMM 'de' yyyy", BRAZIL);
-            return fmt.format(dataOs);
-        }catch (ParseException e){
-            e.printStackTrace();
-            return "";
-        }
-    }
-    */
+*/
 }

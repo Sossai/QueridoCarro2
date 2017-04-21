@@ -17,6 +17,7 @@ import java.util.List;
 import br.com.dev42.queridocarro.R;
 import br.com.dev42.queridocarro.adapters.FragmentListAdapter;
 import br.com.dev42.queridocarro.fragments.IntroFragment;
+import br.com.dev42.queridocarro.fragments.IntroFragmentDados;
 
 public class IntroActivity extends FragmentActivity {
 
@@ -41,7 +42,20 @@ public class IntroActivity extends FragmentActivity {
         List<Fragment> listaFragments = new ArrayList<>();
         listaFragments.add(Fragment.instantiate(this, IntroFragment.class.getName()));
         listaFragments.add(Fragment.instantiate(this, IntroFragment.class.getName()));
-        listaFragments.add(Fragment.instantiate(this, IntroFragment.class.getName()));
+        listaFragments.add(Fragment.instantiate(this, IntroFragmentDados.class.getName()));
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("intro",0);
+        listaFragments.get(0).setArguments(bundle);
+
+        bundle = new Bundle();
+        bundle.putInt("intro",1);
+        listaFragments.get(1).setArguments(bundle);
+
+        bundle = new Bundle();
+        bundle.putInt("intro",2);
+        listaFragments.get(2).setArguments(bundle);
+
 
         PagerAdapter pagerAdapter = new FragmentListAdapter(this.getSupportFragmentManager(), listaFragments);
 

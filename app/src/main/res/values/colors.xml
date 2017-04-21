@@ -10,4 +10,6 @@
     <color name="sombraQC">#42000000</color>
     <color name="colorContraste">#f1f1f1</color>
     <color name="colorPreto">#000000</color>
+    <color name="colorCinzaEscuro">#3c4146</color>
+    <color name="colorCinzaClaro">#758089</color>
 </resources>

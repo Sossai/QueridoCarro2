@@ -4,10 +4,15 @@
     android:layout_height="match_parent"
     tools:context="br.com.dev42.queridocarro.fragments.OficinaFragment">
 
-    <ListView
-        android:id="@+id/listV_Oficina"
+
+    <FrameLayout
+        android:id="@+id/content_oficina"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </ListView>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    </FrameLayout>
+
+
 
 </FrameLayout>

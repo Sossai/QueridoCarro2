@@ -3,6 +3,9 @@
     package="br.com.dev42.queridocarro">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
         android:allowBackup="true"
@@ -22,10 +25,18 @@
             android:name=".activities.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme" />
-        <activity android:name=".activities.ListaOsActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme"/>
-        <activity android:name=".activities.ListaItensOsActivity"></activity>
+        <activity
+            android:name=".activities.ListaOsActivity"
+            android:label="@string/label_os"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activities.ListaOsItensActivity"
+            android:label="@string/label_itens"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activities.ListaOficinasActivity"
+            android:label="@string/label_oficinas"
+            android:theme="@style/AppTheme" />
     </application>
+
 
 </manifest>

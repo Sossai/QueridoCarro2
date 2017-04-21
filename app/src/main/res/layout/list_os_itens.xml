@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorBranco">
+
+    <RelativeLayout
+        android:id="@+id/grupo_itens_descricao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:id="@+id/itens_qtd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10"
+            android:textColor="@color/colorPreto"
+            android:layout_centerVertical="true"
+            android:paddingLeft="5dp"
+            android:paddingRight="16dp"
+            android:layout_alignParentRight="true"/>
+
+        <ImageView
+            android:id="@+id/ic_cesta"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_cesta_128_black"
+            android:gravity="right"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/itens_qtd"/>
+
+        <TextView
+            android:id="@+id/itens_descricao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AMORTECEDOR"
+            android:textColor="@color/colorPreto"
+            android:layout_toLeftOf="@id/ic_cesta"
+            android:textStyle="bold"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/itens_descricao"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_revisao_128_black"
+                android:layout_marginLeft="6dp"/>
+            <TextView
+                android:id="@+id/item_revisao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPreto"
+                android:text="01/01/01"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"/>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_garantia_128_black"
+                android:layout_marginLeft="15dp"/>
+            <TextView
+                android:id="@+id/item_garantia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPreto"
+                android:text="01/01/01"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"/>
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorBranco"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
+
+    <Button
+        android:id="@+id/sigla_oficina"
+        android:layout_height="40dp"
+        android:layout_width="40dp"
+        android:background="@drawable/circulo_list"
+        android:text="S"
+        android:textSize="25sp"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/colorBranco"
+        android:focusable="false"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/sigla_oficina"
+        android:layout_marginLeft="16dp"
+        android:layout_centerVertical="true">
+
+        <TextView
+            android:id="@+id/nomeOficina"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="OFICINA DO ZELAO"
+            android:textStyle="bold"
+            android:textColor="@color/colorPreto"
+            android:layout_marginRight="30sp" />
+
+        <LinearLayout
+            android:id="@+id/grupo_endereco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/nomeOficina"
+            android:layout_marginRight="30dp"
+            android:gravity="center"
+            android:layout_marginTop="2dp">
+
+            <ImageView
+                android:id="@+id/ic_geolocation"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_geolocation_128_red"/>
+
+            <TextView
+                android:id="@+id/endereco_oficina"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rua x "
+                android:textSize="10sp"
+                android:textColor="@color/colorCinzaEscuro"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/grupo_telefone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/grupo_endereco"
+            android:layout_marginRight="30dp"
+            android:gravity="center"
+            android:layout_marginTop="2dp">
+            <ImageView
+                android:id="@+id/ic_telefone"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_below="@id/grupo_endereco"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_telefone_128_green"/>
+
+            <TextView
+                android:id="@+id/telefone_oficina"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="01010101"
+                android:textSize="10sp"
+                android:textColor="@color/colorCinzaEscuro"/>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/ic_option_128_grey"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+</RelativeLayout>

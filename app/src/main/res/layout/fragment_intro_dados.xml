@@ -1,0 +1,148 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/intro_frame3_480"
+    tools:context="br.com.dev42.queridocarro.fragments.IntroFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TableRow
+            android:layout_width="250dp"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="BANCO DE DADOS DO QUERIDO CARRO"
+                    android:padding="10dp"
+                    android:textColor="@color/colorAmarelo"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:background="@drawable/shape_tabela"/>
+
+
+            </LinearLayout>
+
+        </TableRow>
+
+        <TableLayout
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:stretchColumns="1">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nº de Lojas/Oficinas"
+                    android:padding="10dp"
+                    android:textColor="@color/colorCinzaClaro"
+                    android:background="@drawable/shape_tabela"/>
+                <TextView
+                    android:id="@+id/tot_lojas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:padding="10dp"
+                    android:textColor="@color/colorAmarelo"
+                    android:textStyle="bold"
+                    android:background="@drawable/shape_tabela" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nº de Veículos"
+                    android:padding="10dp"
+                    android:textColor="@color/colorCinzaClaro"
+                    android:background="@drawable/shape_tabela"/>
+                <TextView
+                    android:id="@+id/tot_veiculos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:padding="10dp"
+                    android:textColor="@color/colorAmarelo"
+                    android:textStyle="bold"
+                    android:background="@drawable/shape_tabela"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nº de Os/Vendas"
+                    android:padding="10dp"
+                    android:textColor="@color/colorCinzaClaro"
+                    android:background="@drawable/shape_tabela"/>
+                <TextView
+                    android:id="@+id/tot_os"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:padding="10dp"
+                    android:textColor="@color/colorAmarelo"
+                    android:textStyle="bold"
+                    android:background="@drawable/shape_tabela"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nº de Itens"
+                    android:padding="10dp"
+                    android:textColor="@color/colorCinzaClaro"
+                    android:background="@drawable/shape_tabela"/>
+                <TextView
+                    android:id="@+id/tot_itens"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:padding="10dp"
+                    android:textColor="@color/colorAmarelo"
+                    android:textStyle="bold"
+                    android:background="@drawable/shape_tabela"/>
+            </TableRow>
+        </TableLayout>
+
+        <TableRow
+            android:layout_width="250dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tot_dt_atualiza"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_data_atualiza_totalizadores"
+                android:padding="10dp"
+                android:textSize="10sp"
+                android:textColor="@color/colorCinzaClaro"
+                android:gravity="center"
+                android:background="@drawable/shape_tabela"/>
+        </TableRow>
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/frameload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center"/>
+</FrameLayout>

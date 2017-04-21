@@ -7,6 +7,62 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/frame1">
+        android:background="@drawable/intro_frame1_480"
+        android:orientation="vertical"
+>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text=""/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/carro_celular"
+            android:layout_weight="1"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="26dp"
+            android:paddingRight="26dp"
+            android:layout_weight="6">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt1_intro1"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/colorAzulDestaque"
+                android:background="@color/colorAmarelo"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt2_intro1"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/colorAzulDestaque"
+                android:background="@color/colorAmarelo"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt3_intro1"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/colorAzulDestaque"
+                android:background="@color/colorAmarelo"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt4_intro1"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/colorAzulDestaque"
+                android:background="@color/colorAmarelo"/>
+        </LinearLayout>
+
+
     </LinearLayout>
 </FrameLayout>

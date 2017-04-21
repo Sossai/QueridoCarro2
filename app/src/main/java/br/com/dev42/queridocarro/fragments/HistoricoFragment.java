@@ -16,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +27,8 @@ import java.util.List;
 
 import br.com.dev42.queridocarro.R;
 import br.com.dev42.queridocarro.activities.ListaOsActivity;
+import br.com.dev42.queridocarro.extra.HideKeyboard;
+import br.com.dev42.queridocarro.extra.MaskPlaca;
 import br.com.dev42.queridocarro.interfaces.QueridoCarroInterface;
 import br.com.dev42.queridocarro.model.Historico;
 import br.com.dev42.queridocarro.model.Token;
@@ -39,7 +42,7 @@ public class HistoricoFragment extends Fragment {
 
     private View v;
     private MenuInflater inflater;
-    private TextView placa, senha;
+    private EditText placa, senha;
     private static final String TAG = "DEV42";
     private FrameLayout frameload;
 
@@ -55,8 +58,11 @@ public class HistoricoFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         v = inflater.inflate(R.layout.fragment_historico, container, false);
-        placa = (TextView)v.findViewById(R.id.placa);
-        senha = (TextView)v.findViewById(R.id.senha);
+        placa = (EditText) v.findViewById(R.id.placa);
+        senha = (EditText)v.findViewById(R.id.senha);
+
+        //  ** Mask da Placa **
+        placa.addTextChangedListener(MaskPlaca.insert(placa));
 
         frameload = (FrameLayout)v.findViewById(R.id.frameload);
 
@@ -78,7 +84,7 @@ public class HistoricoFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         this.inflater = inflater;
 
-        //HideKeyboard hideKeyboard = new HideKeyboard(getActivity());
+
 
     }
 
@@ -92,7 +98,7 @@ public class HistoricoFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
+        HideKeyboard hideKeyboard = new HideKeyboard(getActivity());
         switch (item.getItemId()){
             case R.id.action_ok:
 
