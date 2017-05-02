@@ -8,21 +8,37 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.nfc.Tag;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.util.Pair;
+import android.support.v4.view.ViewCompat;
+import android.transition.ChangeBounds;
+import android.transition.ChangeClipBounds;
+import android.transition.ChangeImageTransform;
+import android.transition.Fade;
+import android.transition.TransitionInflater;
+import android.transition.TransitionSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import br.com.dev42.queridocarro.R;
 import br.com.dev42.queridocarro.activities.ListaOficinasActivity;
+import br.com.dev42.queridocarro.extra.HideKeyboard;
 import br.com.dev42.queridocarro.interfaces.MenuOficinasInterface;
 
 /**
@@ -34,6 +50,8 @@ public class GeolocationFragment extends Fragment implements LocationListener{
 
     private Location location;
     private LocationManager locationManager;
+    private Menu menu;
+
 //    private Intent intent;
 //    private String bestProvider;
 
@@ -55,22 +73,37 @@ public class GeolocationFragment extends Fragment implements LocationListener{
 
         menuOficinasInterface = (MenuOficinasInterface)getActivity();
 
+//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            getActivity().getWindow().setSharedElementExitTransition(new ChangeBounds());
+//        }
+
         return v;
     }
 
-//    @Override
-//    public void onCreate(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//    }
+/*    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }*/
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        this.menu = menu;
         menu.clear();
         inflater.inflate(R.menu.menu_oficinas_geolocation, menu);
     }
 
     @Override
+    public void onResume() {
+//        Log.e("DEV42", "resume Geolocation");
+        super.onPrepareOptionsMenu(menu);
+        super.onResume();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        //FragmentManager fragmentManager = getFragmentManager();
+
 
         switch (item.getItemId()){
             case R.id.id_menu_buscar:
@@ -81,6 +114,12 @@ public class GeolocationFragment extends Fragment implements LocationListener{
                     intent.putExtra("LONGITUDE", longitude);
                     intent.putExtra("CEP", "");
                     intent.putExtra("ENDERECO", "");
+                    intent.putExtra("TIPO", 2);
+                    /*tipos
+                    CidadeEstado = 1
+                    LatLon = 2
+                    Endereco = 3
+                    Cep = 4*/
                     startActivity(intent);
                 }
                 break;
@@ -91,6 +130,51 @@ public class GeolocationFragment extends Fragment implements LocationListener{
 
             case R.id.id_menu_cep:
                 menuOficinasInterface.mudaMenu("CEP");
+
+                // Transitions
+//                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//
+//                    View imgGeolocation = v.findViewById(R.id.img_geolocation_fr);
+
+//                    ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
+//                            Pair.create(imgGeolocation, "element_cep"));
+
+
+//                    TransitionSet transitionSet = new TransitionSet();
+//                    //transitionSet.addTransition(new ChangeImageTransform());
+//                    transitionSet.addTransition(new ChangeBounds());
+//                    transitionSet.addTransition(new ChangeClipBounds());
+//                    transitionSet.setDuration(600);
+//
+////                    Fade fade = new Fade();
+////                    fade.setStartDelay(300);
+//
+//                    CepFragment cepFragment = new CepFragment();
+//                    cepFragment.setSharedElementEnterTransition(transitionSet);
+                    //cepFragment.setSharedElementReturnTransition(transitionSet);
+
+
+                    //cepFragment.setEnterTransition(new ChangeImageTransform());
+
+//                    cepFragment.setSharedElementEnterTransition(new Fade());
+//                    cepFragment.setEnterTransition(new ChangeImageTransform());
+//                    imgGeolocation.setTransitionName("element_cep");
+
+//                    ViewCompat.setTransitionName(v.findViewById(R.id.img_geolocation_fr), "element_cep");
+//
+//                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction()
+//                            .addSharedElement(imgGeolocation, "element_cep")
+//                            .replace(R.id.content_oficina, cepFragment);
+
+                    //fragmentTransaction.replace(R.id.content_oficina, cepFragment);
+
+                    //fragmentTransaction.commit();
+
+//                    activity.startActivity(intent, options.toBundle());
+//                }else {
+//                    //startActivity(intent);
+//                }
+
                 break;
 
             case R.id.id_menu_location:

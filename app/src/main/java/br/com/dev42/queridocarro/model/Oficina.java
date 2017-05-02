@@ -1,10 +1,12 @@
 package br.com.dev42.queridocarro.model;
 
+import java.io.Serializable;
+
 /**
  * Created by sossai on 19/04/17.
  */
 
-public class Oficina {
+public class Oficina{
     public static class Envio{
         private Double Latitude;
         private Double Longitude;
@@ -12,25 +14,42 @@ public class Oficina {
         private String Cep;
         private Integer Distancia;
         private Integer QuantidadeOficinas;
+        private String Cnpj;
+        private Integer Tipo;
+        private String Oficina;
 
-        public Envio(Double latitude, Double longitude, String endereco, String cep, Integer distancia, Integer quantidadeOficinas) {
+        public Envio(Double latitude, Double longitude, String endereco, String cep, Integer distancia, Integer quantidadeOficinas, String cnpj, Integer tipo, String oficina) {
             Latitude = latitude;
             Longitude = longitude;
             Endereco = endereco;
             Cep = cep;
             Distancia = distancia;
             QuantidadeOficinas = quantidadeOficinas;
+            Cnpj = cnpj;
+            Tipo = tipo;
+            Oficina = oficina;
         }
+
+/*        public Envio(Double latitude, Double longitude, String endereco, String cep, Integer distancia, Integer quantidadeOficinas) {
+            Latitude = latitude;
+            Longitude = longitude;
+            Endereco = endereco;
+            Cep = cep;
+            Distancia = distancia;
+            QuantidadeOficinas = quantidadeOficinas;
+        }*/
 
         @Override
         public String toString() {
             return "Envio{" +
-                    "Latitude='" + Latitude + '\'' +
-                    ", Longitude='" + Longitude + '\'' +
+                    "Latitude=" + Latitude +
+                    ", Longitude=" + Longitude +
                     ", Endereco='" + Endereco + '\'' +
-                    ", Cep=" + Cep +
+                    ", Cep='" + Cep + '\'' +
                     ", Distancia=" + Distancia +
                     ", QuantidadeOficinas=" + QuantidadeOficinas +
+                    ", Cnpj='" + Cnpj + '\'' +
+                    ", Tipo=" + Tipo +
                     '}';
         }
     }
@@ -46,6 +65,7 @@ public class Oficina {
         private Integer OfNumero;
         private String OfLatitude;
         private String OfLongitude;
+        private String OfEnderecoEncontrado;
 
         public String getOfCnpjCpf() {
             return OfCnpjCpf;
@@ -89,6 +109,10 @@ public class Oficina {
 
         public String getOfLongitude() {
             return OfLongitude;
+        }
+
+        public String getOfEnderecoEncontrado() {
+            return OfEnderecoEncontrado;
         }
     }
 }

@@ -1,21 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="br.com.dev42.queridocarro.activities.IntroActivity">
+    android:layout_height="match_parent">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp">
     </android.support.v4.view.ViewPager>
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_alignParentBottom="true">
+    <Button
+        android:id="@+id/btnInicio"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/vamos_la_intro"
+        android:textAllCaps="false"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        android:background="@color/colorAzulDestaque"
+        android:textColor="@color/colorBranco"
+        android:layout_gravity="bottom"/>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -23,7 +27,9 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:paddingBottom="6dp"
-        android:paddingTop="6dp">
+        android:paddingTop="6dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="50dp">
 
         <ImageView
             android:id="@+id/page1"
@@ -49,18 +55,4 @@
             android:layout_gravity="center" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnInicio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/vamos_la_intro"
-        android:textAllCaps="false"
-        android:textSize="23sp"
-        android:textStyle="bold"
-        android:background="@color/colorAzulDestaque"
-        android:textColor="@color/colorBranco"/>
-
-</LinearLayout>
-
-
-</RelativeLayout>
+</FrameLayout>

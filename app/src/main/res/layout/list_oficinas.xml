@@ -93,7 +93,8 @@
             android:layout_height="20dp"
             android:background="@drawable/ic_option_128_grey"
             android:layout_alignParentRight="true"
-            android:layout_centerInParent="true"/>
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
     </RelativeLayout>
 
 </RelativeLayout>

@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="10"
-            android:textColor="@color/colorPreto"
+            android:textColor="@color/colorCinzaEscuro"
             android:layout_centerVertical="true"
             android:paddingLeft="5dp"
             android:paddingRight="16dp"
@@ -26,7 +26,7 @@
             android:id="@+id/ic_cesta"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/ic_cesta_128_black"
+            android:src="@drawable/cesta_128_grey_c"
             android:gravity="right"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/itens_qtd"/>
@@ -53,13 +53,13 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/ic_revisao_128_black"
+                android:src="@drawable/revisao_128_grey_c"
                 android:layout_marginLeft="6dp"/>
             <TextView
                 android:id="@+id/item_revisao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPreto"
+                android:textColor="@color/colorCinzaEscuro"
                 android:text="01/01/01"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"/>
@@ -67,13 +67,13 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/ic_garantia_128_black"
+                android:src="@drawable/garantia_128_grey_c"
                 android:layout_marginLeft="15dp"/>
             <TextView
                 android:id="@+id/item_garantia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPreto"
+                android:textColor="@color/colorCinzaEscuro"
                 android:text="01/01/01"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"/>

@@ -1,111 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorBranco"
-    tools:context="br.com.dev42.queridocarro.activities.ListaOsItensActivity">
+    android:fitsSystemWindows="true"
+    android:clipToPadding="false"
+    android:id="@+id/list_item_view"
+    android:transitionName="element1">
 
-    <LinearLayout
-        android:id="@+id/grupo_itens_oficina"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="15dp"
-            android:gravity="center">
-            <TextView
-                android:id="@+id/itens_os_oficina"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="OFICINA WORKGROUP DESENVOLCIMENO "
-                android:textColor="@color/colorBranco"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:layout_weight="1"/>
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_option_128_white"
-                android:gravity="center"
-                android:layout_marginLeft="10dp"/>
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/barra_titulo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAzulDestaque"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:gravity="center">
-
-        <ImageView
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:src="@drawable/ic_revisao_128_white"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Revisão"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:textColor="@color/colorBranco"/>
-
-        <ImageView
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:src="@drawable/ic_garantia_128_white"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Garantia"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:textColor="@color/colorBranco"/>
-
-        <ImageView
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:src="@drawable/ic_cesta_128_white"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Quantidade"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:textColor="@color/colorBranco"/>
-
-    </LinearLayout>
-
-    <ListView
-        android:id="@+id/list_itemV"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/grupo_itens_oficina"
-        android:layout_above="@id/barra_titulo">
-    </ListView>
+        android:background="@color/colorBranco"
+        tools:context="br.com.dev42.queridocarro.activities.ListaOsItensActivity">
 
-    <include layout="@layout/frame_load"
-        android:id="@+id/frameload"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:visibility="gone"
-        android:layout_centerInParent="true"/>
+            <LinearLayout
+                android:id="@+id/grupo_itens_oficina"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:background="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:paddingTop="5dp"
 
-</RelativeLayout>
+                android:paddingBottom="5dp">
+                <TextView
+                    android:id="@+id/itens_os_oficina"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OFICINA"
+                    android:textColor="@color/colorBranco"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_option_128_white"
+                    android:gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/barra_titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAzulDestaque"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_revisao_128_white"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Revisão"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textColor="@color/colorBranco"/>
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_garantia_128_white"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Garantia"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textColor="@color/colorBranco"/>
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_cesta_128_white"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quantidade"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textColor="@color/colorBranco"/>
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/list_itemV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/grupo_itens_oficina"
+            android:layout_above="@id/barra_titulo">
+        </ListView>
+
+        <include layout="@layout/frame_load"
+            android:id="@+id/frameload"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+</LinearLayout>

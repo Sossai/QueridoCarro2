@@ -6,4 +6,5 @@ package br.com.dev42.queridocarro.interfaces;
 
 public interface MenuOficinasInterface {
     void mudaMenu(String statusMenu);
+    void getToken(String placa, String senha, Boolean salvar);
 }

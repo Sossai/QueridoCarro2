@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="br.com.dev42.queridocarro.activities.MainActivity">
+    <item
+        android:title="Ligar"
+        android:id="@+id/id_menu_ligar"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+    <item
+        android:title="Mapa"
+        android:id="@+id/id_menu_mapa"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_menu_cep_white_72"
+        app:showAsAction="never" />
+</menu>

@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.transition.Explode;
@@ -16,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -27,8 +29,10 @@ import java.util.List;
 
 import br.com.dev42.queridocarro.R;
 import br.com.dev42.queridocarro.activities.ListaOsActivity;
+import br.com.dev42.queridocarro.dao.PlacaDao;
 import br.com.dev42.queridocarro.extra.HideKeyboard;
 import br.com.dev42.queridocarro.extra.MaskPlaca;
+import br.com.dev42.queridocarro.interfaces.MenuOficinasInterface;
 import br.com.dev42.queridocarro.interfaces.QueridoCarroInterface;
 import br.com.dev42.queridocarro.model.Historico;
 import br.com.dev42.queridocarro.model.Token;
@@ -41,24 +45,26 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class HistoricoFragment extends Fragment {
 
     private View v;
-    private MenuInflater inflater;
-    private EditText placa, senha;
+//    private MenuInflater inflater;
+//    private EditText placa, senha;
     private static final String TAG = "DEV42";
-    private FrameLayout frameload;
+//    private FrameLayout frameload;
 
-    private QueridoCarroInterface service;
+//    private QueridoCarroInterface service;
+    private FloatingActionButton btnAddPlaca, btnClosePlaca;
 
-//    public HistoricoFragment() {
-//        // Required empty public constructor
-//    }
-
+//
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         v = inflater.inflate(R.layout.fragment_historico, container, false);
-        placa = (EditText) v.findViewById(R.id.placa);
+
+//        btnAddPlaca = (FloatingActionButton)v.findViewById(R.id.btn_add_placa);
+//        btnClosePlaca = (FloatingActionButton)v.findViewById(R.id.btn_close_add_placa);
+
+/*        placa = (EditText) v.findViewById(R.id.placa);
         senha = (EditText)v.findViewById(R.id.senha);
 
         //  ** Mask da Placa **
@@ -71,9 +77,63 @@ public class HistoricoFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build().create(QueridoCarroInterface.class);
 
+        // *****
+
+*/
+        loadFragmentPlaca();
+
         return v;
     }
 
+    @Override
+    public void onResume() {
+        loadFragmentPlaca();
+        super.onResume();
+    }
+
+    public void loadFragmentPlaca(){
+        MenuOficinasInterface menuOficinasInterface;
+        menuOficinasInterface = (MenuOficinasInterface)getActivity();
+
+        PlacaDao placaDao = new PlacaDao(getActivity());
+        if(placaDao.quantidadePlacasCadastradas() > 0) {
+//            btnClosePlaca.setVisibility(View.GONE);
+//            btnAddPlaca.setVisibility(View.VISIBLE);
+            menuOficinasInterface.mudaMenu("LISTAPLACA");
+            //Toast.makeText(getActivity(), "Lista placas", Toast.LENGTH_LONG).show();
+        }
+        else {
+            menuOficinasInterface.mudaMenu("PLACA");
+//            btnClosePlaca.setVisibility(View.VISIBLE);
+//            btnAddPlaca.setVisibility(View.GONE);
+            //Toast.makeText(getActivity(), "placa Solo", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+//    @Override
+//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//        this.inflater = inflater;
+//    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu){
+        //  **  Limpo o menu e dou inflate aqui pois preciso remover outros menus dos fragments
+        menu.clear();
+//        inflater.inflate(R.menu.menu_main, menu);
+        super.onPrepareOptionsMenu(menu);
+    }
+
+
+
+
+
+/*
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,9 +143,6 @@ public class HistoricoFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         this.inflater = inflater;
-
-
-
     }
 
     @Override
@@ -108,13 +165,11 @@ public class HistoricoFragment extends Fragment {
                 break;
         }
 
-
         return super.onOptionsItemSelected(item);
     }
 
     //  ** Pego o código de acesso **
     protected void getToken(){
-        //Token.Envio tokenEnvio = new Token.Envio("FIR3997","2");
         Token.Envio tokenEnvio = new Token.Envio(placa.getText().toString().replace("-",""),senha.getText().toString());
         Call<Token.Retorno> retToken = service.getToken(tokenEnvio);
         frameload.setVisibility(View.VISIBLE);
@@ -122,16 +177,11 @@ public class HistoricoFragment extends Fragment {
         retToken.enqueue(new Callback<Token.Retorno>() {
             @Override
             public void onResponse(Call<Token.Retorno> call, Response<Token.Retorno> response) {
+                frameload.setVisibility(View.GONE);
                 if(!response.isSuccessful()){
-                    //Log.e(TAG, "Erro.:" + response.code());
                     Toast.makeText(getActivity(), R.string.erro_conexao,Toast.LENGTH_LONG ).show();
-                    frameload.setVisibility(View.GONE);
                 }else {
-//                    Log.e(TAG, "Sucesso");
                     Token.Retorno retornoToken = response.body();
-//                    Log.e(TAG, retornoToken.getTokenHash());
-
-                    frameload.setVisibility(View.GONE);
 
                     if(retornoToken.getTokenHash().length() > 5){
                         //getHistorico(retornoToken.getTokenHash());
@@ -174,5 +224,5 @@ public class HistoricoFragment extends Fragment {
             }else
                 return true;
         }
-    }
+    }*/
 }

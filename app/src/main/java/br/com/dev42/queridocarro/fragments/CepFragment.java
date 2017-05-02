@@ -3,8 +3,10 @@ package br.com.dev42.queridocarro.fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.transition.ChangeBounds;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 
 import br.com.dev42.queridocarro.R;
 import br.com.dev42.queridocarro.activities.ListaOficinasActivity;
+import br.com.dev42.queridocarro.extra.MaskCep;
 import br.com.dev42.queridocarro.interfaces.MenuOficinasInterface;
 
 
@@ -33,6 +36,11 @@ public class CepFragment extends Fragment {
         setHasOptionsMenu(true);
 
         cep = (EditText)v.findViewById(R.id.cep);
+        cep.addTextChangedListener(MaskCep.insert(cep));
+
+//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            getActivity().getWindow().setSharedElementEnterTransition(new ChangeBounds());
+//        }
 
         return v;
     }
@@ -50,10 +58,16 @@ public class CepFragment extends Fragment {
             case R.id.id_menu_buscar:
                 if(cep.getText().toString().length() > 5) {
                     Intent intent = new Intent(getActivity(), ListaOficinasActivity.class);
-                    intent.putExtra("LATITUDE", 0);
-                    intent.putExtra("LONGITUDE", 0);
+                    intent.putExtra("LATITUDE", 0.0);
+                    intent.putExtra("LONGITUDE", 0.0);
                     intent.putExtra("CEP", cep.getText().toString());
                     intent.putExtra("ENDERECO", "");
+                    intent.putExtra("TIPO", 4);
+                    /*tipos
+                    CidadeEstado = 1
+                    LatLon = 2
+                    Endereco = 3
+                    Cep = 4*/
                     startActivity(intent);
                 }else
                     Toast.makeText(getActivity(), R.string.erro_cep, Toast.LENGTH_SHORT).show();

@@ -2,33 +2,26 @@ package br.com.dev42.queridocarro.activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.GradientDrawable;
-import android.nfc.Tag;
 import android.os.Build;
-import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.transition.Explode;
-import android.transition.Fade;
-import android.transition.Slide;
-import android.util.Log;
+import android.transition.ChangeBounds;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
-import android.widget.Adapter;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.List;
 
 import br.com.dev42.queridocarro.R;
 import br.com.dev42.queridocarro.adapters.OsAdapter;
+import br.com.dev42.queridocarro.extra.ActivityHelper;
 import br.com.dev42.queridocarro.extra.CorSigla;
 import br.com.dev42.queridocarro.interfaces.QueridoCarroInterface;
 import br.com.dev42.queridocarro.model.Historico;
@@ -37,8 +30,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
-import static android.R.attr.button;
 
 public class ListaOsActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
     private static final String TAG = "DEV42";
@@ -71,11 +62,22 @@ public class ListaOsActivity extends AppCompatActivity implements SwipeRefreshLa
 //            getWindow().setReturnTransition(tran2);
 //        }
 
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setSharedElementExitTransition(new ChangeBounds());
+        }
+
+
+        ActivityHelper activityHelper = new ActivityHelper(this);
+        activityHelper.mudaStatusCorTransparent();
+
         //  **  Action Bar return   **
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         try{
             actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
+            // ** Remove a Sombra abaixo da actionbar   **
+            actionBar.setElevation(0);
         }catch (Exception e ){
             //Log.e("DEV42", e.getMessage());
         }
@@ -128,7 +130,22 @@ public class ListaOsActivity extends AppCompatActivity implements SwipeRefreshLa
                 intent.putExtra("NUMVENDA", os.getNumVenda());
                 intent.putExtra("TOKEN", token);
                 intent.putExtra("NOMEOFICINA", os.getOficina().trim());
+                intent.putExtra("DATAOS", os.getData().trim());
                 intent.putExtra("COR", CorSigla.escolheCor(os.getOficina()));
+
+
+/*                // Transitions
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+                    View ivSigla = view.findViewById(R.id.sigla_oficina);
+
+                    ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity,
+                            Pair.create(ivSigla, "element1"));
+
+                    activity.startActivity(intent, options.toBundle());
+                }else {
+                    startActivity(intent);
+                }*/
 
                 startActivity(intent);
             }
@@ -166,7 +183,6 @@ public class ListaOsActivity extends AppCompatActivity implements SwipeRefreshLa
     //  ** Pego o Histórico **
     protected void getHistorico(String placa, String token, Integer quantidade, String ultimaDataParm){
 
-        //Historico.Envio histEnvio = new Historico.Envio(placa.getText().toString().replace("-",""),"2016-11-28","2016-11-28", token);
         Historico.Envio histEnvio = new Historico.Envio(placa, ultimaDataParm,quantidade, token);
         Call<List<Historico.Retorno>> listHistorico = service.getHistorico(histEnvio);
         frameload.setVisibility(View.VISIBLE);

@@ -2,6 +2,7 @@ package br.com.dev42.queridocarro.interfaces;
 
 import java.util.List;
 
+import br.com.dev42.queridocarro.model.Estado;
 import br.com.dev42.queridocarro.model.Historico;
 import br.com.dev42.queridocarro.model.HistoricoCompleto;
 import br.com.dev42.queridocarro.model.Oficina;
@@ -11,6 +12,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 /**
  * Created by sossai on 06/04/17.
@@ -33,6 +35,12 @@ public interface QueridoCarroInterface {
 
     @POST("/qcwebapi/OficinaProxima")
     Call<List<Oficina.Retorno>> getOficinasProximas(@Body Oficina.Envio oficinaEnvio);
+
+    @GET("/qcwebapi/estado")
+    Call<List<Estado>> getEstados();
+
+    @GET("/qcwebapi/estado/{siglaEstado}")
+    Call<List<String>> getCidades(@Path("siglaEstado") String siglaEstado);
 
     /*
     @GET("users/{username}")

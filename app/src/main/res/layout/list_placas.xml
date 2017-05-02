@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorBranco"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
+
+    <Button
+        android:id="@+id/sigla_placa"
+        android:layout_height="40dp"
+        android:layout_width="40dp"
+        android:background="@drawable/circulo_list"
+        android:text="A"
+        android:textSize="25sp"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/colorBranco"
+        android:focusable="false"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/sigla_placa"
+        android:layout_marginLeft="16dp"
+        android:layout_centerVertical="true">
+
+        <TextView
+            android:id="@+id/placa"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="AAA-111"
+            android:textStyle="bold"
+            android:textColor="@color/colorCinzaEscuro"
+            android:textSize="30sp"
+            android:layout_marginRight="60sp"
+            android:gravity="center"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

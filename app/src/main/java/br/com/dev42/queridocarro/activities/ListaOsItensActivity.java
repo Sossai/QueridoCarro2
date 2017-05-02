@@ -1,15 +1,21 @@
 package br.com.dev42.queridocarro.activities;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
 import android.nfc.Tag;
 import android.os.Build;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.transition.ChangeBounds;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -20,6 +26,7 @@ import android.widget.Toast;
 
 import br.com.dev42.queridocarro.R;
 import br.com.dev42.queridocarro.adapters.OsItemAdapter;
+import br.com.dev42.queridocarro.extra.ActivityHelper;
 import br.com.dev42.queridocarro.extra.CorSigla;
 import br.com.dev42.queridocarro.interfaces.QueridoCarroInterface;
 import br.com.dev42.queridocarro.model.HistoricoCompleto;
@@ -33,15 +40,42 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ListaOsItensActivity extends AppCompatActivity {
 
     private static final String TAG = "DEV42";
-    private String cnpj,token,cor, nomeOficina;
-    private Integer numVenda, corOficina;
+    private String cnpj,token,cor, nomeOficina, dataOs;
+    private Integer numVenda;
     private ListView lv_itens;
     private Activity activity;
     private android.support.v7.app.ActionBar actionBar;
     private View frameLoad;
 
+    private String telefone, enderecoMapa;
+
+    private String permissaoligar = android.Manifest.permission.CALL_PHONE;
+    private static final int REQUEST_LIGACAO = 11;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        ActivityHelper activityHelper = new ActivityHelper(this);
+        activityHelper.mudaStatusCorTransparent();
+
+
+/*        // TRANSITIONS
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            Fade tran1 = new Fade();
+            tran1.setDuration(2000);
+
+            Slide tran2 = new Slide();
+            tran2.setDuration(200);
+
+            this.setEnterTransition(tran1);*//*
+//            getWindow().setSharedElementExitTransition();
+
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                getWindow().setSharedElementEnterTransition(new ChangeBounds());
+            }
+        }*/
+
+
 
         //  **  Action Bar return   **
         //android.support.v7.app.ActionBar actionBar = getSupportActionBar();
@@ -52,7 +86,7 @@ public class ListaOsItensActivity extends AppCompatActivity {
 
             // ** Remove a Sombra abaixo da actionbar   **
             actionBar.setElevation(0);
-        }catch (Exception e ){
+        }catch (NullPointerException e ){
             //Log.e("DEV42", e.getMessage());
         }
 
@@ -68,6 +102,10 @@ public class ListaOsItensActivity extends AppCompatActivity {
         token = getIntent().getStringExtra("TOKEN");
         cor = getIntent().getStringExtra("COR");
         nomeOficina = getIntent().getStringExtra("NOMEOFICINA");
+        dataOs = getIntent().getStringExtra("DATAOS");
+
+        actionBar.setTitle("O.S. " + numVenda + " - " + dataOs);
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(cor)));
 
         TextView nomeOficinaV = (TextView)findViewById(R.id.itens_os_oficina);
         nomeOficinaV.setText(nomeOficina);
@@ -78,21 +116,25 @@ public class ListaOsItensActivity extends AppCompatActivity {
         View barraOficina = findViewById(R.id.barra_titulo);
         barraOficina.setBackgroundColor(Color.parseColor(cor));
 
-//        lv_itens.setScrollingCacheEnabled(false);
+        View listItem = findViewById(R.id.list_item_view);
+        listItem.setBackgroundColor(Color.parseColor(cor));
 
-
-        actionBar.setTitle("Itens da O.S. " + numVenda);
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(cor)));
 
         // ** mudar a cor do status bar api 21 **
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+/*        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = activity.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(Color.parseColor(cor));
-        }
+        }*/
 
         pegaHistoricoCompleto(cnpj, numVenda,token);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_os_itens, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -101,8 +143,29 @@ public class ListaOsItensActivity extends AppCompatActivity {
             case android.R.id.home:
                 super.onBackPressed();
                 return true;
+            case R.id.id_menu_ligar:
+                Toast.makeText(this, "Ligar", Toast.LENGTH_LONG).show();
+                break;
+            case R.id.id_menu_mapa:
+                Toast.makeText(this, "Mapa", Toast.LENGTH_LONG).show();
+                break;
         }
         return true;
+    }
+
+    public void fazerLigacao(String telefone){
+        if(ActivityCompat.checkSelfPermission(this,permissaoligar) == PackageManager.PERMISSION_GRANTED) {
+            Intent intentLigar = new Intent(Intent.ACTION_CALL);
+            intentLigar.setData(Uri.parse("tel:" + telefone));
+            startActivity(intentLigar);
+        }else
+            ActivityCompat.requestPermissions(this, new String[]{permissaoligar},REQUEST_LIGACAO);
+    }
+
+    public void mostraMapa(String endereco){
+        Intent intentMapa = new Intent(Intent.ACTION_VIEW);
+        intentMapa.setData(Uri.parse("geo:0,0?z=14&q=" + Uri.encode(endereco)));
+        startActivity(intentMapa);
     }
 
     protected void pegaHistoricoCompleto(String cnpj, final Integer numVenda, String token ){
@@ -133,13 +196,13 @@ public class ListaOsItensActivity extends AppCompatActivity {
                     }
 
                 }
-
             }
 
             @Override
             public void onFailure(Call<HistoricoCompleto.Retorno> call, Throwable t) {
                 frameLoad.setVisibility(View.GONE);
-                Toast.makeText(activity, getString(R.string.erro_retorno, t.getMessage()), Toast.LENGTH_LONG).show();
+                //Toast.makeText(activity, getString(R.string.erro_retorno, t.getMessage()), Toast.LENGTH_LONG).show();
+                Toast.makeText(activity, R.string.erro_conexao, Toast.LENGTH_LONG).show();
 
             }
         });

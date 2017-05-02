@@ -13,6 +13,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:screenOrientation="portrait"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".activities.IntroActivity">
             <intent-filter>
@@ -24,17 +25,21 @@
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activities.ListaOsActivity"
             android:label="@string/label_os"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activities.ListaOsItensActivity"
             android:label="@string/label_itens"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity android:name=".activities.ListaOficinasActivity"
             android:label="@string/label_oficinas"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
     </application>
 

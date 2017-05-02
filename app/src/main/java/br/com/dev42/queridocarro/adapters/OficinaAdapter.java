@@ -72,7 +72,11 @@ public class OficinaAdapter extends BaseAdapter {
                 " - " + oficina.getOfBairro().trim() +
                 ", " + oficina.getOfCidade().trim() +
                 " - " + oficina.getOfEstado().trim();
-        holder.enderecoOficina.setText(enderecoCompleto);
+
+        if(oficina.getOfEnderecoEncontrado().isEmpty())
+            holder.enderecoOficina.setText(enderecoCompleto);
+        else
+            holder.enderecoOficina.setText(oficina.getOfEnderecoEncontrado().replace(", Brazil",""));
 
         holder.siglaOficina.setText(oficina.getOfNomeFan().substring(0,1).toUpperCase());
 

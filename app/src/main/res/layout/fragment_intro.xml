@@ -1,21 +1,18 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="br.com.dev42.queridocarro.fragments.IntroFragment">
-
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/intro_frame1_480"
-        android:orientation="vertical"
->
+        android:orientation="vertical">
 
-        <TextView
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:text=""/>
-
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo_querido_carro"
+            android:paddingLeft="26dp"
+            android:paddingRight="26dp"
+            android:paddingTop="6dp"
+            android:layout_weight="1"/>
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,7 +25,7 @@
             android:orientation="vertical"
             android:paddingLeft="26dp"
             android:paddingRight="26dp"
-            android:layout_weight="6">
+            android:layout_weight="3">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -63,6 +60,9 @@
                 android:background="@color/colorAmarelo"/>
         </LinearLayout>
 
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_weight="1"/>
     </LinearLayout>
-</FrameLayout>

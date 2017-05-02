@@ -6,6 +6,7 @@
     tools:context="br.com.dev42.queridocarro.fragments.GeolocationFragment">
 
     <ImageView
+        android:id="@+id/img_geolocation_fr"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/ic_geolocation_128_black"

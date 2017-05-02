@@ -1,63 +1,15 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="br.com.dev42.queridocarro.fragments.HistoricoFragment">
 
-    <ScrollView
-        android:id="@+id/scroll"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:fillViewport="true">
+        <FrameLayout
+            android:id="@+id/content_historico"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        </FrameLayout>
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_gravity="top"
-                    android:layout_alignParentTop="true"
-                    android:contentDescription="logo"
-                    android:adjustViewBounds="true"
-                    android:layout_marginBottom="16dp"/>
-
-                <EditText
-                    android:id="@+id/placa"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="PLACA"
-                    android:textAlignment="center"
-                    android:inputType="textCapCharacters"
-                    android:layout_marginLeft="26dp"
-                    android:layout_marginRight="26dp"
-                    android:text="EEP-4767"/>
-                <EditText
-                    android:id="@+id/senha"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:inputType="textPassword"
-                    android:hint="CODIGO DE ACESSO"
-                    android:maxLength="10"
-                    android:layout_marginLeft="26dp"
-                    android:layout_marginRight="26dp"
-                    android:text="1234"/>
-            </LinearLayout>
-
-            <include layout="@layout/frame_load"
-                android:id="@+id/frameload"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_centerInParent="true"
-                android:visibility="gone"/>
-        </RelativeLayout>
-
-
-    </ScrollView>
-</FrameLayout>
+</RelativeLayout>

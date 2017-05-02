@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import br.com.dev42.queridocarro.fragments.CompareFragment;
 import br.com.dev42.queridocarro.fragments.HistoricoFragment;
 import br.com.dev42.queridocarro.fragments.IntroFragment;
 import br.com.dev42.queridocarro.fragments.OficinaFragment;
@@ -48,7 +49,7 @@ public class TabAdapter extends FragmentStatePagerAdapter {
 
             case 2:
 
-                IntroFragment tab3 = new IntroFragment();
+                CompareFragment tab3 = new CompareFragment();
                 return tab3;
             default:
                 return null;
