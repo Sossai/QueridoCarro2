@@ -23,6 +23,7 @@
     <item
         android:title="@string/buscar_placa"
         android:id="@+id/id_menu_buscar"
+        android:icon="@drawable/ic_menu_ok_green_72"
         android:orderInCategory="100"
         app:showAsAction="always" />
 </menu>

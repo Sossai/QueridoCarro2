@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/page_off"
-            android:layout_marginLeft="2dp"
+            android:layout_marginLeft="5dp"
             android:layout_gravity="center" />
 
         <ImageView
@@ -51,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/page_off"
-            android:layout_marginLeft="2dp"
+            android:layout_marginLeft="5dp"
             android:layout_gravity="center" />
     </LinearLayout>
 

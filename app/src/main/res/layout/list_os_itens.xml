@@ -67,7 +67,7 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/garantia_128_grey_c"
+                android:src="@drawable/garantia_grey"
                 android:layout_marginLeft="15dp"/>
             <TextView
                 android:id="@+id/item_garantia"

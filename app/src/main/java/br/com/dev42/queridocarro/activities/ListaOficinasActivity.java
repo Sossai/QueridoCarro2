@@ -26,6 +26,7 @@ import java.util.List;
 import br.com.dev42.queridocarro.R;
 import br.com.dev42.queridocarro.adapters.OficinaAdapter;
 import br.com.dev42.queridocarro.extra.ActivityHelper;
+import br.com.dev42.queridocarro.extra.CorSigla;
 import br.com.dev42.queridocarro.extra.HideKeyboard;
 import br.com.dev42.queridocarro.interfaces.QueridoCarroInterface;
 import br.com.dev42.queridocarro.model.Oficina;
@@ -58,6 +59,7 @@ public class ListaOficinasActivity extends AppCompatActivity implements SwipeRef
     private Integer tipo;
     private String nomeOficina;
 
+
     private static final String PERMISSAO_LIGAR = android.Manifest.permission.CALL_PHONE;
     private static final int REQUEST_LIGACAO = 11;
 
@@ -80,6 +82,7 @@ public class ListaOficinasActivity extends AppCompatActivity implements SwipeRef
         cep = getIntent().getStringExtra("CEP");
         endereco = getIntent().getStringExtra("ENDERECO");
         tipo = getIntent().getIntExtra("TIPO",0);
+
         ultimaCnpj = "";
         nomeOficina = "";
 
@@ -88,6 +91,7 @@ public class ListaOficinasActivity extends AppCompatActivity implements SwipeRef
         try{
             actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setElevation(0);
 
             //  ** Busca por Cidade/Estado não é pro proximidade
             if(tipo != 1)
@@ -140,7 +144,14 @@ public class ListaOficinasActivity extends AppCompatActivity implements SwipeRef
         lvOficinas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                view.showContextMenu();
+//                view.showContextMenu();
+                Intent intent = new Intent(ListaOficinasActivity.this, OficinaDetalheActivity.class);
+
+                Oficina.Retorno oficinaSelecionada = retornoOficinas.get(position);
+
+                intent.putExtra("COR", CorSigla.escolheCor(oficinaSelecionada.getOfNomeFan()));
+                intent.putExtra("NOMEOFICINA", oficinaSelecionada.getOfNomeFan().trim());
+                startActivity(intent);
             }
         });
 
@@ -215,8 +226,14 @@ public class ListaOficinasActivity extends AppCompatActivity implements SwipeRef
             Intent intentLigar = new Intent(Intent.ACTION_CALL);
             intentLigar.setData(Uri.parse("tel:" + telefone));
             startActivity(intentLigar);
-        }else
-            ActivityCompat.requestPermissions(this, new String[]{PERMISSAO_LIGAR},REQUEST_LIGACAO);
+        }else {
+            ActivityCompat.requestPermissions(this, new String[]{PERMISSAO_LIGAR}, REQUEST_LIGACAO);
+            if(ActivityCompat.checkSelfPermission(this,PERMISSAO_LIGAR) == PackageManager.PERMISSION_GRANTED) {
+                Intent intentLigar = new Intent(Intent.ACTION_CALL);
+                intentLigar.setData(Uri.parse("tel:" + telefone));
+                startActivity(intentLigar);
+            }
+        }
     }
 
     public void mostraMapa(String endereco){
@@ -271,8 +288,13 @@ public class ListaOficinasActivity extends AppCompatActivity implements SwipeRef
                         }
                         carregarMaisItens = true;
 
-                    }//else
-                        //Toast.makeText(activity, R.string.erro_busca_oficinas, Toast.LENGTH_LONG).show();
+                    }else {
+                        //  ** Não devo verificar caso ja tenha algum item na lista pois carrega por requisição **
+                        if(retornoOficinas == null || retornoOficinas.size() == 0){
+                            Toast.makeText(activity, R.string.erro_busca_oficinas, Toast.LENGTH_LONG).show();
+                            finish();
+                        }
+                    }
                 }
             }
 

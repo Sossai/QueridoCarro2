@@ -63,9 +63,9 @@ public class ListaOsActivity extends AppCompatActivity implements SwipeRefreshLa
 //        }
 
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setSharedElementExitTransition(new ChangeBounds());
-        }
+//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            getWindow().setSharedElementExitTransition(new ChangeBounds());
+//        }
 
 
         ActivityHelper activityHelper = new ActivityHelper(this);
@@ -132,6 +132,9 @@ public class ListaOsActivity extends AppCompatActivity implements SwipeRefreshLa
                 intent.putExtra("NOMEOFICINA", os.getOficina().trim());
                 intent.putExtra("DATAOS", os.getData().trim());
                 intent.putExtra("COR", CorSigla.escolheCor(os.getOficina()));
+                String telCompleto = os.getDdd() + os.getTelefone();
+                intent.putExtra("TELEFONEOFICINA", telCompleto);
+                intent.putExtra("ENDERECOOFICINA", os.getEnderecoEncontrado());
 
 
 /*                // Transitions

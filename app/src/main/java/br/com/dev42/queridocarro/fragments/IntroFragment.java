@@ -12,11 +12,6 @@ import br.com.dev42.queridocarro.R;
 
 
 public class IntroFragment extends Fragment {
-//    // TODO: Rename parameter arguments, choose names that match
-
-    public IntroFragment() {
-        // Required empty public constructor
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,6 +31,8 @@ public class IntroFragment extends Fragment {
                     return inflater.inflate(R.layout.fragment_intro, container, false);
                 case 1:
                     return inflater.inflate(R.layout.fragment_intro_page2, container, false);
+                case 2:
+                    return inflater.inflate(R.layout.fragment_intro_page3, container, false);
             }
         }
 

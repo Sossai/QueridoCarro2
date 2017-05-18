@@ -55,6 +55,9 @@ public class Historico {
         private String KmRevisao;
         private String Data;
         private String Hora;
+        private Integer Ddd;
+        private String Telefone;
+        private String EnderecoEncontrado;
 
         public String getPlaca() {
             return Placa;
@@ -88,5 +91,16 @@ public class Historico {
             return Hora;
         }
 
+        public Integer getDdd() {
+            return Ddd;
+        }
+
+        public String getTelefone() {
+            return Telefone;
+        }
+
+        public String getEnderecoEncontrado() {
+            return EnderecoEncontrado;
+        }
     }
 }

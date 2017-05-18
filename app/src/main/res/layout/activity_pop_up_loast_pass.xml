@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorBranco"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="28dp"
+    android:paddingBottom="28dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/lvlost_placa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="EEP-4767"
+            android:hint="PLACA"
+            android:gravity="center"/>
+        <EditText
+            android:id="@+id/lvlost_cnpj"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="22400828873"
+            android:hint="CPF/CNPJ"
+            android:gravity="center"/>
+        <EditText
+            android:id="@+id/lv_lostemail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="teste@teste.com"
+            android:hint="E-MAIL"
+            android:gravity="center"/>
+        
+    </LinearLayout>
+
+</RelativeLayout>

@@ -97,16 +97,10 @@ public class HistoricoFragment extends Fragment {
 
         PlacaDao placaDao = new PlacaDao(getActivity());
         if(placaDao.quantidadePlacasCadastradas() > 0) {
-//            btnClosePlaca.setVisibility(View.GONE);
-//            btnAddPlaca.setVisibility(View.VISIBLE);
             menuOficinasInterface.mudaMenu("LISTAPLACA");
-            //Toast.makeText(getActivity(), "Lista placas", Toast.LENGTH_LONG).show();
         }
         else {
             menuOficinasInterface.mudaMenu("PLACA");
-//            btnClosePlaca.setVisibility(View.VISIBLE);
-//            btnAddPlaca.setVisibility(View.GONE);
-            //Toast.makeText(getActivity(), "placa Solo", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -116,113 +110,12 @@ public class HistoricoFragment extends Fragment {
         setHasOptionsMenu(true);
     }
 
-//    @Override
-//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        this.inflater = inflater;
-//    }
-
     @Override
-    public void onPrepareOptionsMenu(Menu menu){
-        //  **  Limpo o menu e dou inflate aqui pois preciso remover outros menus dos fragments
-        menu.clear();
-//        inflater.inflate(R.menu.menu_main, menu);
+    public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-    }
-
-
-
-
-
-/*
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        this.inflater = inflater;
-    }
-
-    @Override
-    public void onPrepareOptionsMenu(Menu menu){
-        //  **  Limpo o menu e dou inflate aqui pois preciso remover outros menus dos fragments
         menu.clear();
+        MenuInflater inflater = getActivity().getMenuInflater();
         inflater.inflate(R.menu.menu_placa, menu);
-        super.onPrepareOptionsMenu(menu);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        HideKeyboard hideKeyboard = new HideKeyboard(getActivity());
-        switch (item.getItemId()){
-            case R.id.action_ok:
-
-                if(placasenhaValidos())
-                    getToken();
-
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    //  ** Pego o código de acesso **
-    protected void getToken(){
-        Token.Envio tokenEnvio = new Token.Envio(placa.getText().toString().replace("-",""),senha.getText().toString());
-        Call<Token.Retorno> retToken = service.getToken(tokenEnvio);
-        frameload.setVisibility(View.VISIBLE);
-
-        retToken.enqueue(new Callback<Token.Retorno>() {
-            @Override
-            public void onResponse(Call<Token.Retorno> call, Response<Token.Retorno> response) {
-                frameload.setVisibility(View.GONE);
-                if(!response.isSuccessful()){
-                    Toast.makeText(getActivity(), R.string.erro_conexao,Toast.LENGTH_LONG ).show();
-                }else {
-                    Token.Retorno retornoToken = response.body();
-
-                    if(retornoToken.getTokenHash().length() > 5){
-                        //getHistorico(retornoToken.getTokenHash());
-                        Intent intent = new Intent(getActivity(), ListaOsActivity.class);
-                        intent.putExtra("placa", placa.getText().toString().replace("-",""));
-                        intent.putExtra("token", retornoToken.getTokenHash());
-
-                        // TRANSITIONS
-//                        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-//                            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),null);
-//                            startActivity(intent, options.toBundle());
-//                        }else
-//                        {
-                            startActivity(intent);
-//                        }
-
-                    }else {
-                        Toast.makeText(getActivity(), getString(R.string.erro_retorno,retornoToken.getErro()),Toast.LENGTH_LONG ).show();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Token.Retorno> call, Throwable t) {
-                Log.e(TAG, "Erro.:" + t.getMessage());
-                Toast.makeText(getActivity(), "Erro:" + t.getMessage(),Toast.LENGTH_LONG ).show();
-                frameload.setVisibility(View.GONE);
-            }
-        });
-    }
-
-    private boolean placasenhaValidos(){
-        if(placa.length() < 8){
-            placa.setError("Placa inválida.");
-            return false;
-        }else{
-            if(senha.length() == 0){
-                senha.setError("Código de acesso inválido.");
-                return false;
-            }else
-                return true;
-        }
-    }*/
 }

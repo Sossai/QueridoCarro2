@@ -2,6 +2,8 @@ package br.com.dev42.queridocarro.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.nfc.Tag;
+import android.os.PersistableBundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -11,6 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Toast;
 
@@ -41,6 +45,10 @@ public class MainActivity extends AppCompatActivity implements MenuOficinasInter
     private TabLayout tabLayout;
     private Activity activity = this;
     private View frameLoad;
+    private android.support.v7.app.ActionBar actionBar;
+    private String statusStanceOifina = null;
+
+    private Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +64,17 @@ public class MainActivity extends AppCompatActivity implements MenuOficinasInter
 //            getWindow().setReenterTransition(tran2);
 //        }
 
+
+        actionBar = getSupportActionBar();
+//        try{
+//            actionBar.setHomeButtonEnabled(true);
+//            actionBar.setDisplayHomeAsUpEnabled(true);
+//
+//            // ** Remove a Sombra abaixo da actionbar   **
+//            actionBar.setElevation(0);
+//        }catch (NullPointerException e ){
+//            //Log.e("DEV42", e.getMessage());
+//        }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -90,6 +109,9 @@ public class MainActivity extends AppCompatActivity implements MenuOficinasInter
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+
+                //supportInvalidateOptionsMenu();
+
                 viewPager.setCurrentItem(tab.getPosition());
                 //  ** Esconde o menu na tela de Oficinas e compare **
                 if(tab.getPosition() == 1 || tab.getPosition() == 2 ){
@@ -107,35 +129,71 @@ public class MainActivity extends AppCompatActivity implements MenuOficinasInter
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        this.menu = menu;
+        return super.onCreateOptionsMenu(menu);
+    }
+
     // ** Interface que muda as opçoes das oficinas **
     //  ** usado interface para não replicar codigo dentro dos fragments especialistas **
     @Override
     public void mudaMenu(String statusMenu) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        Log.e("DEV42", "Click:" + statusMenu);
         switch(statusMenu){
             case "GEOLOCATION":
                 fragmentTransaction.replace(R.id.content_oficina, new GeolocationFragment());
+                statusStanceOifina = statusMenu;
+
                 break;
             case "CEP":
                 fragmentTransaction.replace(R.id.content_oficina, new CepFragment());
-
+                statusStanceOifina = statusMenu;
                 break;
             case "LOCATION":
                 fragmentTransaction.replace(R.id.content_oficina, new LocationFragment());
+                statusStanceOifina = statusMenu;
                 break;
 
             case "PLACA":
                 fragmentTransaction.replace(R.id.content_historico, new PlacaAcessoFragment());
+//                statusStanceOifina = null;
                 break;
 
             case "LISTAPLACA":
                 fragmentTransaction.replace(R.id.content_historico, new ListaPlacasFragment());
+//                statusStanceOifina = null;
                 break;
 //            default:
 //                fragmentTransaction.replace(R.id.content_oficina, new GeolocationFragment());
         }
         fragmentTransaction.commit();
+    }
+
+    //  ** Salvo a ultima escolha no menu de oficinas pois no retorno roda o create novamente **
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putString("STANCEOFICINA", statusStanceOifina);
+
+//        Log.e("DEV42", "Save:" + statusStanceOifina);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+
+        if(savedInstanceState != null){
+            statusStanceOifina = savedInstanceState.getString("STANCEOFICINA");
+
+//            Log.e("DEV42", "Restore:" + statusStanceOifina);
+            if( statusStanceOifina != null)
+                if(statusStanceOifina.equals("GEOLOCATION")|| statusStanceOifina.equals("CEP") || statusStanceOifina.equals("LOCATION"))
+                    mudaMenu(statusStanceOifina);
+        }
+
+        super.onRestoreInstanceState(savedInstanceState);
     }
 
     @Override
@@ -191,14 +249,18 @@ public class MainActivity extends AppCompatActivity implements MenuOficinasInter
 //                        }
 
                     }else {
-                        Toast.makeText(activity, getString(R.string.erro_retorno,retornoToken.getErro()),Toast.LENGTH_LONG ).show();
+                        Log.e("DEV42",retornoToken.getErro().trim() );
+                        if(retornoToken.getErro().trim().toUpperCase().equals("FALSE") )
+                            Toast.makeText(activity, R.string.erro_codigo_acesso,Toast.LENGTH_LONG ).show();
+                        else
+                            Toast.makeText(activity, getString(R.string.erro_retorno,retornoToken.getErro()),Toast.LENGTH_LONG ).show();
                     }
                 }
             }
 
             @Override
             public void onFailure(Call<Token.Retorno> call, Throwable t) {
-                Toast.makeText(activity, "Erro:" + t.getMessage(),Toast.LENGTH_LONG ).show();
+                Toast.makeText(activity, getString(R.string.erro_fatal,t.getMessage()),Toast.LENGTH_LONG ).show();
                 frameLoad.setVisibility(View.GONE);
             }
         });

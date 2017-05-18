@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAzulDestaque</item>
         <item name="android:colorBackground">@color/colorFundoBase</item>
+        <item name="android:textColorSecondary">@color/colorBranco</item>
 
     </style>
 
@@ -16,4 +17,9 @@
 
 
 
+    <style name="HeaderTitleStyle" parent="@android:style/TextAppearance">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:singleLine">false</item>
+    </style>
 </resources>

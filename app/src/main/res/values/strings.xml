@@ -7,14 +7,32 @@
 
     <string name="buscar_placa">Buscar</string>
     <string name="erro_conexao">Erro ao acessar o servidor de dados.</string>
+    <string name="erro_codigo_acesso">Código de acesso inválido.</string>
     <string name="erro_retorno">Erro : %s</string>
     <string name="label_os">O.S.</string>
     <string name="label_itens">Itens O.S.</string>
     <string name="label_oficinas">Oficinas</string>
+    <string name="label_oficina">Oficina</string>
     <string name="txt1_intro1">" AGORA VOCÊ "</string>
     <string name="txt2_intro1">" TAMBÉM PODE VERIFICAR "</string>
     <string name="txt3_intro1">" O HISTÓRICO DO SEU CARRO "</string>
     <string name="txt4_intro1">" PELO APLICATIVO "</string>
+
+    <string name="txt1_intro2">" TODO HISTÓRICO DE "</string>
+    <string name="txt2_intro2">" MANUTENÇÃO "</string>
+    <string name="txt3_intro2">" DE SEU CARRO "</string>
+    <string name="txt4_intro2">" COM GARANTIAS "</string>
+    <string name="txt5_intro2">" E REVISÕES. "</string>
+    <string name="txt6_intro2">" GARANTA "</string>
+    <string name="txt7_intro2">" A VALORIZAÇÃO "</string>
+    <string name="txt8_intro2">" DE SEU PATROMÔNIO! "</string>
+
+    <string name="txt1_intro3">" ENCONTRE A OFICINA  "</string>
+    <string name="txt2_intro3">" MAIS PRÓXIMA "</string>
+    <string name="txt3_intro3">" E QUE GARANTA "</string>
+    <string name="txt4_intro3">" O HISTÓRICO "</string>
+    <string name="txt5_intro3">" DE MANUTENÇÃO "</string>
+    <string name="txt6_intro3">" DO SEU VEÍCULO. "</string>
 
     <string name="label_data_atualiza_totalizadores">"Atualizado em : " %s</string>
     <string name="hint_estado">Estado</string>
@@ -24,9 +42,10 @@
     <string name="erro_cep">CEP inválido.</string>
     <string name="erro_cidadeestado">Seleciona um Estado e uma Cidade.</string>
     <string name="erro_busca_oficinas">Nenhuma oficina encontrada.</string>
+    <string name="erro_geolocalizacao">Falha ao capturar dados de Geolocalização.</string>
+    <string name="erro_gps">Sem sinal de GPS.</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="erro_fatal">"Erro Fatal :" %s</string>
 
 
 </resources>

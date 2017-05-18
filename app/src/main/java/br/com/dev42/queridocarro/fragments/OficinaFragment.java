@@ -9,6 +9,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -37,21 +38,39 @@ public class OficinaFragment extends Fragment implements LocationListener {
 
         v = inflater.inflate(R.layout.fragment_oficina, container, false);
 
-//        menuStatus = "GEOLOCATION";
-//        escolheFiltroOficina("GEOLOCATION");
-
         MenuOficinasInterface menuOficinasInterface = (MenuOficinasInterface)getActivity();
+//        menuOficinasInterface.mudaMenu("DEFAULTOFICINA");
         menuOficinasInterface.mudaMenu("GEOLOCATION");
 
         return v;
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        menu.clear();
+        MenuInflater inflater = getActivity().getMenuInflater();
+        inflater.inflate(R.menu.menu_oficinas, menu);
+        super.onPrepareOptionsMenu(menu);
+    }
+
+//    @Override
+//    public void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        outState.putString("TESTE", "GEO");
+//    }
+
+//    @Override
+//    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+//        super.onViewStateRestored(savedInstanceState);
+//        if(savedInstanceState != null)
+//            Toast.makeText(getActivity(), savedInstanceState.getString("TESTE"), Toast.LENGTH_LONG).show();
+//    }
 
     @Override
     public void onLocationChanged(Location location) {}

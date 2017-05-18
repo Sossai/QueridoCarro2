@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/lv_back_oficina_detalhe"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:background="@color/colorAzulDestaque"/>
+
+    <TextView
+        android:id="@+id/tv_nome_oficina"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/lv_back_oficina_detalhe"
+        android:text="CENTRO AUTOMOTIVO"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/lv_back_oficina_detalhe"
+        android:background="@color/colorContraste">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/ll_group_tel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:paddingLeft="28dp"
+                android:paddingRight="28dp">
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_telefone_128_green"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(19) 32410133"
+                    android:textColor="@color/colorCinzaEscuro"
+                    android:paddingLeft="8dp"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_group_geo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_group_tel"
+                android:orientation="horizontal"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:paddingLeft="28dp"
+                android:paddingRight="28dp">
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_geolocation_128_red"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Av Agnaldo Macedo 400, Campinas - SP"
+                    android:textColor="@color/colorCinzaEscuro"
+                    android:paddingLeft="8dp"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_group_mail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_group_geo"
+                android:orientation="horizontal"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:paddingLeft="28dp"
+                android:paddingRight="28dp">
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_mail_48_orange"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="testeemail@gmail.com"
+                    android:textColor="@color/colorCinzaEscuro"
+                    android:paddingLeft="8dp"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_servicos_prestados"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Serviços prestados :"
+                android:textColor="@color/colorPreto"
+                android:layout_below="@+id/ll_group_mail"
+                android:paddingTop="8dp"
+                android:paddingBottom="16dp"
+                android:paddingLeft="28dp"
+                android:paddingRight="28dp"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/tv_servicos_prestados">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <include layout="@layout/barra_divisor"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_below="@id/ll_group_tel"/>
+
+            <include layout="@layout/barra_divisor"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_below="@id/ll_group_geo"/>
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>
+
+

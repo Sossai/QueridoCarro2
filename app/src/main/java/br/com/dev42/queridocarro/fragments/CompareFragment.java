@@ -16,7 +16,7 @@ import br.com.dev42.queridocarro.R;
  */
 public class CompareFragment extends Fragment {
 
-    private MenuInflater inflater;
+//    private MenuInflater inflater;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,16 +31,16 @@ public class CompareFragment extends Fragment {
         setHasOptionsMenu(true);
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        this.inflater = inflater;
-    }
+//    @Override
+//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//        this.inflater = inflater;
+//    }
 
     @Override
     public void onPrepareOptionsMenu(Menu menu){
         //  **  Limpo o menu e dou inflate aqui pois preciso remover outros menus dos fragments
         menu.clear();
-
+        MenuInflater inflater = getActivity().getMenuInflater();
         inflater.inflate(R.menu.menu_compare, menu);
         super.onPrepareOptionsMenu(menu);
     }

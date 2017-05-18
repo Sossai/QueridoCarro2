@@ -42,7 +42,8 @@ public class IntroActivity extends FragmentActivity {
         List<Fragment> listaFragments = new ArrayList<>();
         listaFragments.add(Fragment.instantiate(this, IntroFragment.class.getName()));
         listaFragments.add(Fragment.instantiate(this, IntroFragment.class.getName()));
-        listaFragments.add(Fragment.instantiate(this, IntroFragmentDados.class.getName()));
+        listaFragments.add(Fragment.instantiate(this, IntroFragment.class.getName()));
+//        listaFragments.add(Fragment.instantiate(this, IntroFragmentDados.class.getName()));
 
         Bundle bundle = new Bundle();
         bundle.putInt("intro",0);

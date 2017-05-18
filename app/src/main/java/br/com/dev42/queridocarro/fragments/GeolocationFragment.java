@@ -33,6 +33,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -50,7 +52,8 @@ public class GeolocationFragment extends Fragment implements LocationListener{
 
     private Location location;
     private LocationManager locationManager;
-    private Menu menu;
+//    private Menu menu;
+    private MenuInflater inflater;
 
 //    private Intent intent;
 //    private String bestProvider;
@@ -65,39 +68,79 @@ public class GeolocationFragment extends Fragment implements LocationListener{
 
     private MenuOficinasInterface menuOficinasInterface;
 
+    private Animation contrair, expandir;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         v = inflater.inflate(R.layout.fragment_geolocation, container, false);
-        setHasOptionsMenu(true);
+//        setHasOptionsMenu(true);
+
+        contrair = AnimationUtils.loadAnimation(getActivity(),R.anim.anim_contrair);
+        expandir = AnimationUtils.loadAnimation(getActivity(),R.anim.anim_expandir);
+
+        ImageView imgGeo = (ImageView)v.findViewById(R.id.img_geolocation_fr);
+        imgGeo.startAnimation(expandir);
 
         menuOficinasInterface = (MenuOficinasInterface)getActivity();
 
 //        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 //            getActivity().getWindow().setSharedElementExitTransition(new ChangeBounds());
 //        }
-
         return v;
     }
 
-/*    @Override
+
+//    @Override
+//    public void onAttach(Context context) {
+//        Log.e("DEV42", "onAttach GEOLOCATION");
+//        super.onAttach(context);
+//        getActivity().invalidateOptionsMenu();
+//        setHasOptionsMenu(true);
+//    }
+
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }*/
+        setHasOptionsMenu(true);
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        this.menu = menu;
-        menu.clear();
-        inflater.inflate(R.menu.menu_oficinas_geolocation, menu);
     }
 
+//    @Override
+//    public void onSaveInstanceState(Bundle outState) {
+//        outState.putString("TESTE", "GEO");
+//        Log.e("DEV42", "save GEO");
+//        super.onSaveInstanceState(outState);
+//    }
+
+    //    @Override
+//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//        Log.e("DEV42", "onCreateOptionsMenu GEOLOCATION");
+//        //this.menu = menu;
+//
+//        super.onCreateOptionsMenu(menu, inflater);
+//        menu.clear();
+//        inflater.inflate(R.menu.menu_oficinas_geolocation, menu);
+//
+//        this.inflater = inflater;
+//    }
+
     @Override
-    public void onResume() {
-//        Log.e("DEV42", "resume Geolocation");
+    public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        super.onResume();
+//        menu.clear();
+//        MenuInflater inflater = getActivity().getMenuInflater();
+//        inflater.inflate(R.menu.menu_oficinas_geolocation, menu);
+        menu.removeItem(R.id.id_menu_geolocation);
+
     }
+
+//    @Override
+//    public void onResume() {
+//        Log.e("DEV42", "resume Geolocation");
+////        super.onPrepareOptionsMenu(menu);
+//        super.onResume();
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -198,9 +241,19 @@ public class GeolocationFragment extends Fragment implements LocationListener{
             isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
             if (!isGPSEnabled && !isNetworkEnabled) {
-                Toast.makeText(getActivity(), "Sem sinal de GPS.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.erro_gps, Toast.LENGTH_SHORT).show();
             }else {
                 // ** verifica permição de uso do GPS **
+
+                if (ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) ==
+                        PackageManager.PERMISSION_DENIED ||
+                        ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION) ==
+                                PackageManager.PERMISSION_DENIED){
+                    ActivityCompat.requestPermissions(getActivity(), new String[] {
+                                    Manifest.permission.ACCESS_FINE_LOCATION,
+                                    Manifest.permission.ACCESS_COARSE_LOCATION },
+                            8);
+                }
 
                 if (ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) ==
                         PackageManager.PERMISSION_GRANTED &&
@@ -241,20 +294,20 @@ public class GeolocationFragment extends Fragment implements LocationListener{
                         }
                     }
 
-                }else
+                }/*else
                 {
                     ActivityCompat.requestPermissions(getActivity(), new String[] {
                                     Manifest.permission.ACCESS_FINE_LOCATION,
                                     Manifest.permission.ACCESS_COARSE_LOCATION },
                             8);
-                }
+                }*/
 
             }
 
 
         }catch (Exception ex){
             //Log.e("Erro Location", ex.getMessage());
-            Toast.makeText(getActivity(), "Falha ao capturar dados de Geolocalização.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), R.string.erro_geolocalizacao, Toast.LENGTH_LONG).show();
         }
     }
 

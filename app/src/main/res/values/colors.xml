@@ -12,4 +12,9 @@
     <color name="colorPreto">#000000</color>
     <color name="colorCinzaEscuro">#3c4146</color>
     <color name="colorCinzaClaro">#758089</color>
+
+    <color name="translucent_scrim_top">#26000000</color>
+    <color name="translucent_scrim_top_center">#0C000000</color>
+    <color name="translucent_scrim_bottom">#2A000000</color>
+    <color name="translucent_scrim_bottom_center">#0D000000</color>
 </resources>

@@ -43,8 +43,15 @@
                 android:text="Salvar placa"
                 android:checked="true"
                 android:layout_marginLeft="26dp"/>
-        </LinearLayout>
 
+            <TextView
+                android:id="@+id/esqueci_codigo_acesso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Esqueceu seu código de acesso."
+                android:gravity="center"
+                android:paddingTop="8dp"/>
+        </LinearLayout>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/btn_close_add_placa"

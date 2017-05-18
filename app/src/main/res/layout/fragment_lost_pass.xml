@@ -1,0 +1,52 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="br.com.dev42.queridocarro.fragments.LostPassFragment">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp">
+
+            <EditText
+                android:id="@+id/lvlost_placa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="PLACA"
+                android:gravity="center"/>
+            <EditText
+                android:id="@+id/lvlost_cnpj"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="CPF/CNPJ"
+                android:gravity="center"/>
+            <EditText
+                android:id="@+id/lv_lostemail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="E-MAIL"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btn_lost_close_add_placa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:clickable="true"
+            app:backgroundTint="@color/colorAzulDestaque"
+            app:elevation="6dp"
+            app:fabSize="mini"
+            android:src="@drawable/ic_close_128_white"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"/>
+    </RelativeLayout>
+</FrameLayout>

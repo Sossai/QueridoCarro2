@@ -33,24 +33,18 @@ public class TabAdapter extends FragmentStatePagerAdapter {
         switch (position){
             case 0:
 
-                //  **  Se tiver placas cadastrada mostra a lista senao a tela de insert    **
-//                PlacaDao placaDao = new PlacaDao(context);
-//                Integer qtdPlacas = placaDao.quantidadePlacasCadastradas();
-//                HistoricoFragment tab1 = new HistoricoFragment();
-//                return tab1;
                 HistoricoFragment tab1 = new HistoricoFragment();
                 return tab1;
             case 1:
-//                OficinasFragment tab2 = new OficinasFragment();
-//                return tab2;
 
                 OficinaFragment tab2 = new OficinaFragment();
                 return tab2;
 
-            case 2:
+//            case 2:
+//
+//                CompareFragment tab3 = new CompareFragment();
+//                return tab3;
 
-                CompareFragment tab3 = new CompareFragment();
-                return tab3;
             default:
                 return null;
         }
