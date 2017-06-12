@@ -3,6 +3,7 @@ package br.com.dev42.queridocarro.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.Image;
 import android.net.Uri;
 import android.nfc.Tag;
 import android.support.v4.app.ActivityCompat;
@@ -18,9 +19,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.dev42.queridocarro.R;
@@ -28,15 +34,17 @@ import br.com.dev42.queridocarro.adapters.OficinaAdapter;
 import br.com.dev42.queridocarro.extra.ActivityHelper;
 import br.com.dev42.queridocarro.extra.CorSigla;
 import br.com.dev42.queridocarro.extra.HideKeyboard;
+import br.com.dev42.queridocarro.interfaces.OficinaManagerInterface;
 import br.com.dev42.queridocarro.interfaces.QueridoCarroInterface;
 import br.com.dev42.queridocarro.model.Oficina;
+import br.com.dev42.queridocarro.model.Servico;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ListaOficinasActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class ListaOficinasActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, OficinaManagerInterface {
 
     private static final String TAG = "DEV42";
     private String menuStatus;
@@ -56,8 +64,9 @@ public class ListaOficinasActivity extends AppCompatActivity implements SwipeRef
     private Double longitude;
     private String cep;
     private String endereco;
-    private Integer tipo;
+    private Integer tipo, tipoServico;
     private String nomeOficina;
+    private ImageView optionOficina;
 
 
     private static final String PERMISSAO_LIGAR = android.Manifest.permission.CALL_PHONE;
@@ -82,9 +91,16 @@ public class ListaOficinasActivity extends AppCompatActivity implements SwipeRef
         cep = getIntent().getStringExtra("CEP");
         endereco = getIntent().getStringExtra("ENDERECO");
         tipo = getIntent().getIntExtra("TIPO",0);
+        tipoServico = getIntent().getIntExtra("SERVICO",0);
 
         ultimaCnpj = "";
         nomeOficina = "";
+
+
+
+//        optionOficina = (ImageView)findViewById(R.id.iv_oficina_option);
+
+
 
         //  **  Action Bar return   **
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
@@ -139,25 +155,55 @@ public class ListaOficinasActivity extends AppCompatActivity implements SwipeRef
             }
         });
 
-        registerForContextMenu(lvOficinas);
+//        registerForContextMenu(lvOficinas);
+
 
         lvOficinas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+//                view.showContextMenu();
+
+                //openContextMenu(view);
+
+
+
+
 //                view.showContextMenu();
                 Intent intent = new Intent(ListaOficinasActivity.this, OficinaDetalheActivity.class);
 
                 Oficina.Retorno oficinaSelecionada = retornoOficinas.get(position);
 
                 intent.putExtra("COR", CorSigla.escolheCor(oficinaSelecionada.getOfNomeFan()));
-                intent.putExtra("NOMEOFICINA", oficinaSelecionada.getOfNomeFan().trim());
+
+                Gson gson = new Gson();
+                intent.putExtra("OFICINA", gson.toJson(oficinaSelecionada));
+
                 startActivity(intent);
             }
         });
 
         getOficinas();
-//        getOficinas(latitude, longitude, cep, endereco, distancia, quantidade, "", tipo);
     }
+
+/*    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+
+        switch (v.getId()){
+            case R.id.iv_oficina_option:
+                Log.e(TAG,"OPTION");
+                break;
+            default:
+                Log.e(TAG,v.toString());
+                break;
+        }
+        menu.setHeaderTitle("Select The Action");
+        menu.add(0, v.getId(), 0, "Call");//groupId, itemId, order, title
+        menu.add(0, v.getId(), 0, "SMS");
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -193,8 +239,10 @@ public class ListaOficinasActivity extends AppCompatActivity implements SwipeRef
         return true;
     }
 
-    @Override
+/*    @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+
+        Log.e(TAG,"onCreateContextMenu");
 
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
         final Oficina.Retorno oficinaSelecionada = (Oficina.Retorno)lvOficinas.getItemAtPosition(info.position);
@@ -219,9 +267,23 @@ public class ListaOficinasActivity extends AppCompatActivity implements SwipeRef
                 return false;
             }
         });
+    }*/
+
+
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        Log.e(TAG,"CLICK CONTEXT");
+
+        switch(item.getItemId()){
+            case R.id.iv_oficina_option:
+                Log.e(TAG, "OAP");
+                break;
+        }
+        return false;
     }
 
-    public void fazerLigacao(String telefone){
+/*    public void fazerLigacao(String telefone){
         if(ActivityCompat.checkSelfPermission(this,PERMISSAO_LIGAR) == PackageManager.PERMISSION_GRANTED) {
             Intent intentLigar = new Intent(Intent.ACTION_CALL);
             intentLigar.setData(Uri.parse("tel:" + telefone));
@@ -234,13 +296,13 @@ public class ListaOficinasActivity extends AppCompatActivity implements SwipeRef
                 startActivity(intentLigar);
             }
         }
-    }
+    }*/
 
-    public void mostraMapa(String endereco){
+/*    public void mostraMapa(String endereco){
         Intent intentMapa = new Intent(Intent.ACTION_VIEW);
         intentMapa.setData(Uri.parse("geo:0,0?z=14&q=" + Uri.encode(endereco)));
         startActivity(intentMapa);
-    }
+    }*/
 
     @Override
     public void onRefresh() {
@@ -256,7 +318,12 @@ public class ListaOficinasActivity extends AppCompatActivity implements SwipeRef
     {
         frameLoad.setVisibility(View.VISIBLE);
 
-        Oficina.Envio oficinaEnvio = new Oficina.Envio(latitude, longitude, endereco, cep, distancia, quantidade, ultimaCnpj, tipo, nomeOficina);
+        //  ** Atualmente aceita apenas 1 serviço por busca mas a api ja recebe N   **
+        List<Integer> lCodidosServicos = new ArrayList<>();
+        if(tipoServico > 0)
+            lCodidosServicos.add(tipoServico);
+
+        Oficina.Envio oficinaEnvio = new Oficina.Envio(latitude, longitude, endereco, cep, distancia, quantidade, ultimaCnpj, tipo, nomeOficina, lCodidosServicos);
 
         Call<List<Oficina.Retorno>> retOficinas = service.getOficinasProximas(oficinaEnvio);
 
@@ -318,5 +385,50 @@ public class ListaOficinasActivity extends AppCompatActivity implements SwipeRef
                 return true;
         }
         return true;
+    }
+
+    @Override
+    public void ligar(String telefone) {
+//    public void ligar(Integer position) {
+
+//        String telefone = retornoOficinas.get(position).getOfDdd().toString().trim() + retornoOficinas.get(position).getOfTel().trim();
+
+        if(ActivityCompat.checkSelfPermission(this,PERMISSAO_LIGAR) == PackageManager.PERMISSION_GRANTED) {
+            Intent intentLigar = new Intent(Intent.ACTION_CALL);
+            intentLigar.setData(Uri.parse("tel:" + telefone));
+            startActivity(intentLigar);
+        }else {
+            ActivityCompat.requestPermissions(this, new String[]{PERMISSAO_LIGAR}, REQUEST_LIGACAO);
+            if(ActivityCompat.checkSelfPermission(this,PERMISSAO_LIGAR) == PackageManager.PERMISSION_GRANTED) {
+                Intent intentLigar = new Intent(Intent.ACTION_CALL);
+                intentLigar.setData(Uri.parse("tel:" + telefone));
+                startActivity(intentLigar);
+            }
+        }
+    }
+
+    @Override
+    public void mostrarMapa(String endereco) {
+//    public void mostrarMapa(Integer position) {
+//        String endereco = retornoOficinas.get(position).getOfEnderecoEncontrado();
+
+        Intent intentMapa = new Intent(Intent.ACTION_VIEW);
+        intentMapa.setData(Uri.parse("geo:0,0?z=14&q=" + Uri.encode(endereco)));
+        startActivity(intentMapa);
+    }
+
+    @Override
+    public void listarServicos(List<Servico> servicos) {
+//    public void listarServicos(Integer position) {
+        PopUpServicosActivity popUpServicosActivity = new PopUpServicosActivity();
+
+//        List<Servico> servicos = retornoOficinas.get(position).getServicos();
+
+        Gson gson = new Gson();
+
+        Bundle bundle = new Bundle();
+        bundle.putString("SERVICOS", gson.toJson(servicos));
+        popUpServicosActivity.setArguments(bundle);
+        popUpServicosActivity.show(getSupportFragmentManager(), popUpServicosActivity.TAG);
     }
 }

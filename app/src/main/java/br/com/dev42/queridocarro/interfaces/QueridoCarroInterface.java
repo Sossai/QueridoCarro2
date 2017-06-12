@@ -6,6 +6,8 @@ import br.com.dev42.queridocarro.model.Estado;
 import br.com.dev42.queridocarro.model.Historico;
 import br.com.dev42.queridocarro.model.HistoricoCompleto;
 import br.com.dev42.queridocarro.model.Oficina;
+import br.com.dev42.queridocarro.model.RecuperarSenha;
+import br.com.dev42.queridocarro.model.Servico;
 import br.com.dev42.queridocarro.model.Token;
 import br.com.dev42.queridocarro.model.Totalizadores;
 import retrofit2.Call;
@@ -41,6 +43,15 @@ public interface QueridoCarroInterface {
 
     @GET("/qcwebapi/estado/{siglaEstado}")
     Call<List<String>> getCidades(@Path("siglaEstado") String siglaEstado);
+
+    @GET("/qcwebapi/ServicoOficina")
+    Call<List<Servico>> getServicos();
+
+    @GET("/qcwebapi/oficina/{cnpjOficina}")
+    Call<Oficina.Retorno> getOficinaDetalhe(@Path("cnpjOficina") String cnpjOficina);
+
+    @POST("/qcwebapi/RecuperarSenha")
+    Call<RecuperarSenha.Retorno> getSenha(@Body RecuperarSenha.Envio recuperarSenhEnvio);
 
     /*
     @GET("users/{username}")

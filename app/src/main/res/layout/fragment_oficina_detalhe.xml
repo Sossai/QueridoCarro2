@@ -48,8 +48,9 @@
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_telefone_128_green"/>
+                    android:src="@drawable/ic_telefone_green"/>
                 <TextView
+                    android:id="@+id/tv_tel_of_det"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="(19) 32410133"
@@ -75,8 +76,10 @@
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_geolocation_128_red"/>
+                    android:src="@drawable/ic_geolocation_red"/>
+
                 <TextView
+                    android:id="@+id/tv_nome_oficina_det"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Av Agnaldo Macedo 400, Campinas - SP"
@@ -103,10 +106,12 @@
                     android:layout_height="28dp"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_mail_48_orange"/>
+
                 <TextView
+                    android:id="@+id/tvemail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="testeemail@gmail.com"
+                    android:text=" - "
                     android:textColor="@color/colorCinzaEscuro"
                     android:paddingLeft="8dp"
                     android:textSize="20dp"

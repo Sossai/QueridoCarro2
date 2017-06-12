@@ -30,6 +30,10 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,13 +42,17 @@ import br.com.dev42.queridocarro.adapters.ServicoAdapter;
 import br.com.dev42.queridocarro.extra.ActivityHelper;
 import br.com.dev42.queridocarro.interfaces.QueridoCarroInterface;
 import br.com.dev42.queridocarro.model.Oficina;
+import br.com.dev42.queridocarro.model.Servico;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class OficinaDetalheActivity extends AppCompatActivity {
 
     private static final String TAG = "DEV42";
-    private QueridoCarroInterface service;
+//    private QueridoCarroInterface service;
     private Activity activity;
 
     private RecyclerView rvServico;
@@ -52,6 +60,11 @@ public class OficinaDetalheActivity extends AppCompatActivity {
 
     private static final String PERMISSAO_LIGAR = android.Manifest.permission.CALL_PHONE;
     private static final int REQUEST_LIGACAO = 11;
+//    private View frameLoad;
+//    private String cnpjOficina;
+    private Oficina.Retorno oficinaParm;
+
+    private TextView telOficina, endOficina, emailOficina, tvNomeOficina, labelServicos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,13 +84,28 @@ public class OficinaDetalheActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         String corOficina = getIntent().getStringExtra("COR");
-        String nomeOficina = getIntent().getStringExtra("NOMEOFICINA");
+//        final String nomeOficina = getIntent().getStringExtra("NOMEOFICINA");
+//        cnpjOficina = getIntent().getStringExtra("CNPJOFICINA");
 
-        TextView tvNomeOficina = (TextView)findViewById(R.id.tv_nome_oficina_detalhe);
-        tvNomeOficina.setText(nomeOficina);
+//        Bundle bundle = getIntent().getExtras();
+//        oficinaParm = (Oficina.Retorno)bundle.getSerializable("OFICINA");
+
+        Gson gson = new Gson();
+        oficinaParm = gson.fromJson(getIntent().getStringExtra("OFICINA"), Oficina.Retorno.class);
+
+//        String nomeOficina = oficinaParm.getOfNomeFan().trim();
+//        cnpjOficina = oficinaParm.getOfCnpjCpf().trim();
+
+        tvNomeOficina = (TextView)findViewById(R.id.tv_nome_oficina_detalhe);
 
         ImageView imageOficina = (ImageView)findViewById(R.id.cover_image);
         imageOficina.setBackgroundColor(Color.parseColor(corOficina));
+
+        telOficina = (TextView)findViewById(R.id.tv_tel_number_det);
+        endOficina = (TextView)findViewById(R.id.tv_end_det);
+        emailOficina = (TextView)findViewById(R.id.tv_email_det);
+        labelServicos = (TextView)findViewById(R.id.tv_servicos_prestados);
+
 
         final ImageView imageOptionTel = (ImageView)findViewById(R.id.iv_opt_tel);
         imageOptionTel.setOnClickListener(new View.OnClickListener() {
@@ -85,23 +113,15 @@ public class OficinaDetalheActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 PopupMenu popup = new PopupMenu(activity, imageOptionTel, Gravity.RIGHT);
-
-                //popup.getMenuInflater().inflate(R.menu.menu_popup_telefone, popup.getMenu());
-
-//                popup.getMenu().add(groupId, itemId, order, title);
                 popup.getMenu().add(1,1,1,"Ligar");
-//                popup.getMenu().add(1,2,1,"Adicionar");
 
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()){
                             case 1:
-                                Toast.makeText(activity, "Ligar", Toast.LENGTH_LONG).show();
+                                fazerLigacao(oficinaParm.getOfDdd().toString().trim() + oficinaParm.getOfTel().trim());
                                 break;
-//                            case 2:
-//                                Toast.makeText(activity, "Adicionar aos contatos", Toast.LENGTH_LONG).show();
-//                                break;
                         }
 
                         return false;
@@ -124,11 +144,8 @@ public class OficinaDetalheActivity extends AppCompatActivity {
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()){
                             case 1:
-                                Toast.makeText(activity, "Mapa", Toast.LENGTH_LONG).show();
+                                mostraMapa(oficinaParm.getOfEnderecoEncontrado());
                                 break;
-//                            case 2:
-//                                Toast.makeText(activity, "Adicionar aos contatos", Toast.LENGTH_LONG).show();
-//                                break;
                         }
 
                         return false;
@@ -138,11 +155,12 @@ public class OficinaDetalheActivity extends AppCompatActivity {
             }
         });
 
+//        frameLoad = findViewById(R.id.frameload);
 
-        service = new Retrofit.Builder()
-                .baseUrl(QueridoCarroInterface.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build().create(QueridoCarroInterface.class);
+//        service = new Retrofit.Builder()
+//                .baseUrl(QueridoCarroInterface.BASE_URL)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build().create(QueridoCarroInterface.class);
 
         rvServico = (RecyclerView)findViewById(R.id.rv_servicos);
         rvServico.setHasFixedSize(true);
@@ -150,28 +168,33 @@ public class OficinaDetalheActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         rvServico.setLayoutManager(layoutManager);
 
-        List<String> mListServicos = new ArrayList<>();
-        mListServicos.add("Alinhamento / Balanceamento  ");
-        mListServicos.add("Funilaria");
-        mListServicos.add("Mecânica Geral  ");
-        mListServicos.add("Bombas Injetoras");
-        mListServicos.add("Suspensão");
-        mListServicos.add("Ar Condicionado");
-        mListServicos.add("Pneus ");
-        mListServicos.add("Adaptações - Veículos Especiais");
-        mListServicos.add("Amortecedores");
-        mListServicos.add("Lavagem");
-        mListServicos.add("Lavagem");
-        mListServicos.add("Lavagem");
-        mListServicos.add("Lavagem");
-        mListServicos.add("Lavagem");
-        mListServicos.add("Lavagem");
-        mListServicos.add("Lavagem");
-        mListServicos.add("Lavagem");
-        mListServicos.add("Adaptações - Veículos Especiais");
+        holder(oficinaParm);
+    }
 
-        ServicoAdapter adapter = new ServicoAdapter(this, mListServicos);
-        rvServico.setAdapter(adapter);
+    private void holder(Oficina.Retorno oficina){
+
+        String enderecoCompleto = oficina.getOfEndere().trim() +
+                "," + oficina.getOfNumero().toString() +
+                " - " + oficina.getOfBairro().trim() +
+                ", " + oficina.getOfCidade().trim() +
+                " - " + oficina.getOfEstado().trim();
+
+        String telefoneCompleto = "(" + oficina.getOfDdd() + ") " +
+                oficina.getOfTel().trim();
+
+        telOficina.setText(telefoneCompleto.trim());
+        endOficina.setText(enderecoCompleto.trim());
+        emailOficina.setText(oficina.getOfEmail().trim());
+
+        tvNomeOficina.setText(oficina.getOfNomeFan().trim());
+
+        if(oficina.getServicos().size() > 0){
+            List<Servico> mListServicos = oficina.getServicos();
+            ServicoAdapter adapter = new ServicoAdapter(activity, mListServicos);
+            rvServico.setAdapter(adapter);
+        }else {
+            labelServicos.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -187,40 +210,6 @@ public class OficinaDetalheActivity extends AppCompatActivity {
         }
         return true;
     }
-
-/*    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-
-        Log.e(TAG, "CONTEXT MENU");
-
-//        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
-//        final Oficina.Retorno oficinaSelecionada = (Oficina.Retorno)lvOficinas.getItemAtPosition(info.position);
-
-        menu.setHeaderIcon(R.drawable.ic_telefone_128_green);
-        MenuItem ligar = menu.add("Ligar");
-        MenuItem mapa = menu.add("Mapa");
-
-        ligar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-//                String telCompleto = oficinaSelecionada.getOfDdd() + oficinaSelecionada.getOfTel();
-//                fazerLigacao(telCompleto);
-
-                Toast.makeText(activity, "Ligar", Toast.LENGTH_LONG).show();
-                return false;
-            }
-        });
-
-        mapa.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-//                mostraMapa(oficinaSelecionada.getOfEnderecoEncontrado());
-
-                Toast.makeText(activity, "Mapa", Toast.LENGTH_LONG).show();
-                return false;
-            }
-        });
-    }*/
 
     public void fazerLigacao(String telefone){
         if(ActivityCompat.checkSelfPermission(this,PERMISSAO_LIGAR) == PackageManager.PERMISSION_GRANTED) {

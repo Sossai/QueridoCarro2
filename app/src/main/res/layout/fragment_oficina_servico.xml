@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="br.com.dev42.queridocarro.fragments.OficinaServicoFragment"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginTop="16dp">
+
+    <RelativeLayout
+        android:id="@+id/grupo_servico"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/iv_servico_of"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_revisao_black_servico"
+            android:layout_centerVertical="true"/>
+
+        <EditText
+            android:id="@+id/id_servico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_servico"
+            android:gravity="center"
+            android:focusable="false"
+            android:layout_toRightOf="@id/iv_servico_of"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_centerVertical="true"
+            android:backgroundTint="@color/colorAzulDestaque"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/clear_busca_servico"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Limpar o campo de Serviço."
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="66dp"
+        android:layout_marginRight="16dp"
+        android:layout_below="@id/grupo_servico"
+        android:visibility="gone"/>
+
+    <include layout="@layout/frame_load"
+        android:id="@+id/frameload"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+</RelativeLayout>

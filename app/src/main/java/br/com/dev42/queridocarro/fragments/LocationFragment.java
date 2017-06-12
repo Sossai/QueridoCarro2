@@ -33,6 +33,7 @@ import br.com.dev42.queridocarro.R;
 import br.com.dev42.queridocarro.activities.ListaOficinasActivity;
 import br.com.dev42.queridocarro.interfaces.MenuOficinasInterface;
 import br.com.dev42.queridocarro.interfaces.QueridoCarroInterface;
+import br.com.dev42.queridocarro.interfaces.ServicoSelecionadoInterface;
 import br.com.dev42.queridocarro.model.Estado;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,6 +56,7 @@ public class LocationFragment extends Fragment {
     private View frameLoad;
 
     private Animation contrair, expandir;
+    private ServicoSelecionadoInterface servicoSelecionadoInterface;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -75,6 +77,8 @@ public class LocationFragment extends Fragment {
                 .baseUrl(QueridoCarroInterface.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build().create(QueridoCarroInterface.class);
+
+        servicoSelecionadoInterface = (ServicoSelecionadoInterface)getActivity();
 
         estado.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,6 +196,10 @@ public class LocationFragment extends Fragment {
                     //intent.putExtra("ENDERECO", cidade.getText().toString() + "," + estado.getText().toString());
                     intent.putExtra("ENDERECO", cidade.getText().toString() + "," + estadoSelecionado);
                     intent.putExtra("TIPO", 1);
+
+                    if(servicoSelecionadoInterface.getServicoSelecionado() != null)
+                        intent.putExtra("SERVICO", servicoSelecionadoInterface.getServicoSelecionado().getServCodigo());
+
                     /*tipos
                     CidadeEstado = 1
                     LatLon = 2

@@ -36,7 +36,7 @@ public class OsAdapter extends BaseAdapter {
 
     private List<Historico.Retorno> listaOs;
     private Activity activity;
-        private View layout;
+    private View layout;
 
     public OsAdapter(List<Historico.Retorno> listaOs, Activity activity) {
         this.listaOs = listaOs;

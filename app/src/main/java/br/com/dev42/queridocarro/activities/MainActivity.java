@@ -27,10 +27,13 @@ import br.com.dev42.queridocarro.fragments.CepFragment;
 import br.com.dev42.queridocarro.fragments.GeolocationFragment;
 import br.com.dev42.queridocarro.fragments.ListaPlacasFragment;
 import br.com.dev42.queridocarro.fragments.LocationFragment;
+import br.com.dev42.queridocarro.fragments.OficinaServicoFragment;
 import br.com.dev42.queridocarro.fragments.PlacaAcessoFragment;
 import br.com.dev42.queridocarro.interfaces.MenuOficinasInterface;
 import br.com.dev42.queridocarro.interfaces.QueridoCarroInterface;
+import br.com.dev42.queridocarro.interfaces.ServicoSelecionadoInterface;
 import br.com.dev42.queridocarro.model.Placa;
+import br.com.dev42.queridocarro.model.Servico;
 import br.com.dev42.queridocarro.model.Token;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,7 +41,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity implements MenuOficinasInterface {
+public class MainActivity extends AppCompatActivity implements MenuOficinasInterface, ServicoSelecionadoInterface {
 
     private PagerAdapter pagerAdapter;
     private ViewPager viewPager;
@@ -49,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements MenuOficinasInter
     private String statusStanceOifina = null;
 
     private Menu menu;
+
+    private Servico servicoSelecionado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,15 +150,18 @@ public class MainActivity extends AppCompatActivity implements MenuOficinasInter
         switch(statusMenu){
             case "GEOLOCATION":
                 fragmentTransaction.replace(R.id.content_oficina, new GeolocationFragment());
+                fragmentTransaction.replace(R.id.content_servico, new OficinaServicoFragment());
                 statusStanceOifina = statusMenu;
 
                 break;
             case "CEP":
                 fragmentTransaction.replace(R.id.content_oficina, new CepFragment());
+                fragmentTransaction.replace(R.id.content_servico, new OficinaServicoFragment());
                 statusStanceOifina = statusMenu;
                 break;
             case "LOCATION":
                 fragmentTransaction.replace(R.id.content_oficina, new LocationFragment());
+                fragmentTransaction.replace(R.id.content_servico, new OficinaServicoFragment());
                 statusStanceOifina = statusMenu;
                 break;
 
@@ -265,6 +273,19 @@ public class MainActivity extends AppCompatActivity implements MenuOficinasInter
             }
         });
 
+    }
+
+    @Override
+    public Servico getServicoSelecionado() {
+//        if( servicoSelecionado != null)
+//            Log.e("DEV42", "GET:" + servicoSelecionado.getServDescri());
+        return servicoSelecionado;
+    }
+
+    @Override
+    public void setServicoSelecionado(Servico servico) {
+//        Log.e("DEV42", "SET:" + servico.getServDescri());
+        servicoSelecionado = servico;
     }
 
 //    @Override

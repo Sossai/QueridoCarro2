@@ -26,7 +26,7 @@
             android:id="@+id/ic_cesta"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/cesta_128_grey_c"
+            android:src="@drawable/cesta_grey_c"
             android:gravity="right"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/itens_qtd"/>
@@ -53,7 +53,7 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/revisao_128_grey_c"
+                android:src="@drawable/revisao_grey_c"
                 android:layout_marginLeft="6dp"/>
             <TextView
                 android:id="@+id/item_revisao"

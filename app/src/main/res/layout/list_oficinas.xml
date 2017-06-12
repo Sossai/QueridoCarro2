@@ -52,7 +52,7 @@
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_marginRight="5dp"
-                android:src="@drawable/ic_geolocation_128_red"/>
+                android:src="@drawable/ic_geolocation_red"/>
 
             <TextView
                 android:id="@+id/endereco_oficina"
@@ -78,7 +78,7 @@
                 android:layout_height="15dp"
                 android:layout_below="@id/grupo_endereco"
                 android:layout_marginRight="5dp"
-                android:src="@drawable/ic_telefone_128_green"/>
+                android:src="@drawable/ic_telefone_green"/>
 
             <TextView
                 android:id="@+id/telefone_oficina"
@@ -90,12 +90,13 @@
         </LinearLayout>
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:id="@+id/iv_oficina_option"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:background="@drawable/ic_option_grey"
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
-            android:visibility="gone"/>
+            android:visibility="visible"/>
     </RelativeLayout>
 
 </RelativeLayout>

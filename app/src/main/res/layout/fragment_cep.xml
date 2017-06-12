@@ -1,38 +1,28 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="br.com.dev42.queridocarro.fragments.CepFragment"
-    android:orientation="vertical">
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginTop="16dp">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:transitionName="element_cep">
-
-        <ImageView
-            android:id="@+id/img_cep_fr"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_cep_128_black"
-            android:layout_marginTop="16dp"/>
-    </LinearLayout>
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp">
+    <ImageView
+        android:id="@+id/img_cep_fr"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_cep_128_black"
+        android:layout_centerVertical="true" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_centerHorizontal="true"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp">
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/img_cep_fr"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
             <EditText
                 android:id="@+id/cep"
@@ -44,8 +34,8 @@
                 android:inputType="textCapCharacters"
                 android:gravity="center"
                 android:hint="CEP"
+                android:backgroundTint="@color/colorAzulDestaque"
                 android:maxLength="9"/>
         </LinearLayout>
-    </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>

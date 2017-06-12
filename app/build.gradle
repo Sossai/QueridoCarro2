@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-/*
+
 def renameArtifact(variant, defaultConfig) {
     variant.outputs.each { output ->
         def formattedDate = new Date().format('yyyyMMddHHmmss')
@@ -14,19 +14,18 @@ def renameArtifact(variant, defaultConfig) {
     }
 }
 
-*/
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
 
-    //include this line for your android applications
-    //applicationVariants.all { variant -> renameArtifact(variant, defaultConfig) }
+//    include this line for your android applications
+    applicationVariants.all { variant -> renameArtifact(variant, defaultConfig) }
 
     defaultConfig {
         applicationId "br.com.dev42.queridocarro"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 2
+        versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }

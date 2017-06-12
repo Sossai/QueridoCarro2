@@ -38,14 +38,19 @@
     <string name="hint_estado">Estado</string>
     <string name="hint_cidade">Cidade</string>
     <string name="hint_geolocation">Encontre a oficina mais próxima.</string>
+    <string name="hint_servico">Serviço</string>
 
     <string name="erro_cep">CEP inválido.</string>
     <string name="erro_cidadeestado">Seleciona um Estado e uma Cidade.</string>
     <string name="erro_busca_oficinas">Nenhuma oficina encontrada.</string>
     <string name="erro_geolocalizacao">Falha ao capturar dados de Geolocalização.</string>
+    <string name="erro_padrao_dados">Não foi possível recuperar seus dados.</string>
     <string name="erro_gps">Sem sinal de GPS.</string>
 
     <string name="erro_fatal">"Erro Fatal :" %s</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

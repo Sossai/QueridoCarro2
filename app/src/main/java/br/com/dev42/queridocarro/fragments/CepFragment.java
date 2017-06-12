@@ -25,6 +25,7 @@ import br.com.dev42.queridocarro.R;
 import br.com.dev42.queridocarro.activities.ListaOficinasActivity;
 import br.com.dev42.queridocarro.extra.MaskCep;
 import br.com.dev42.queridocarro.interfaces.MenuOficinasInterface;
+import br.com.dev42.queridocarro.interfaces.ServicoSelecionadoInterface;
 
 
 public class CepFragment extends Fragment {
@@ -35,6 +36,7 @@ public class CepFragment extends Fragment {
     private String savedCep;
 
     private Animation contrair, expandir;
+    private ServicoSelecionadoInterface servicoSelecionadoInterface;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,6 +52,8 @@ public class CepFragment extends Fragment {
 
         ImageView imgCep = (ImageView)v.findViewById(R.id.img_cep_fr);
         imgCep.startAnimation(expandir);
+
+        servicoSelecionadoInterface = (ServicoSelecionadoInterface)getActivity();
 
 //        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 //            getActivity().getWindow().setSharedElementEnterTransition(new ChangeBounds());
@@ -82,6 +86,10 @@ public class CepFragment extends Fragment {
                     intent.putExtra("CEP", cep.getText().toString());
                     intent.putExtra("ENDERECO", "");
                     intent.putExtra("TIPO", 4);
+
+                    if(servicoSelecionadoInterface.getServicoSelecionado() != null)
+                        intent.putExtra("SERVICO", servicoSelecionadoInterface.getServicoSelecionado().getServCodigo());
+
                     /*tipos
                     CidadeEstado = 1
                     LatLon = 2

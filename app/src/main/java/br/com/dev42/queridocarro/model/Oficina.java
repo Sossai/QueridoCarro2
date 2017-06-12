@@ -1,12 +1,15 @@
 package br.com.dev42.queridocarro.model;
 
 import java.io.Serializable;
+import java.util.List;
+import com.google.gson.annotations.Expose;
 
 /**
  * Created by sossai on 19/04/17.
  */
 
 public class Oficina{
+
     public static class Envio{
         private Double Latitude;
         private Double Longitude;
@@ -17,8 +20,9 @@ public class Oficina{
         private String Cnpj;
         private Integer Tipo;
         private String Oficina;
+        private List<Integer> Servicos;
 
-        public Envio(Double latitude, Double longitude, String endereco, String cep, Integer distancia, Integer quantidadeOficinas, String cnpj, Integer tipo, String oficina) {
+        public Envio(Double latitude, Double longitude, String endereco, String cep, Integer distancia, Integer quantidadeOficinas, String cnpj, Integer tipo, String oficina, List<Integer> servicos) {
             Latitude = latitude;
             Longitude = longitude;
             Endereco = endereco;
@@ -28,16 +32,8 @@ public class Oficina{
             Cnpj = cnpj;
             Tipo = tipo;
             Oficina = oficina;
+            Servicos = servicos;
         }
-
-/*        public Envio(Double latitude, Double longitude, String endereco, String cep, Integer distancia, Integer quantidadeOficinas) {
-            Latitude = latitude;
-            Longitude = longitude;
-            Endereco = endereco;
-            Cep = cep;
-            Distancia = distancia;
-            QuantidadeOficinas = quantidadeOficinas;
-        }*/
 
         @Override
         public String toString() {
@@ -50,10 +46,12 @@ public class Oficina{
                     ", QuantidadeOficinas=" + QuantidadeOficinas +
                     ", Cnpj='" + Cnpj + '\'' +
                     ", Tipo=" + Tipo +
+                    ", Oficina='" + Oficina + '\'' +
+                    ", Servicos=" + Servicos +
                     '}';
         }
     }
-    public static class Retorno{
+    public static class Retorno implements Serializable{
         private String OfCnpjCpf;
         private String OfNomeFan;
         private String OfEstado;
@@ -66,6 +64,13 @@ public class Oficina{
         private String OfLatitude;
         private String OfLongitude;
         private String OfEnderecoEncontrado;
+        private String OfEmail;
+        //  * transient não entra no Serializable
+        private List<Servico> Servicos;
+
+        public String getOfEmail() {
+            return OfEmail;
+        }
 
         public String getOfCnpjCpf() {
             return OfCnpjCpf;
@@ -113,6 +118,29 @@ public class Oficina{
 
         public String getOfEnderecoEncontrado() {
             return OfEnderecoEncontrado;
+        }
+
+        public List<Servico> getServicos() {
+            return Servicos;
+        }
+
+        @Override
+        public String toString() {
+            return "Retorno{" +
+                    "OfCnpjCpf='" + OfCnpjCpf + '\'' +
+                    ", OfNomeFan='" + OfNomeFan + '\'' +
+                    ", OfEstado='" + OfEstado + '\'' +
+                    ", OfCidade='" + OfCidade + '\'' +
+                    ", OfDdd=" + OfDdd +
+                    ", OfTel='" + OfTel + '\'' +
+                    ", OfBairro='" + OfBairro + '\'' +
+                    ", OfEndere='" + OfEndere + '\'' +
+                    ", OfNumero=" + OfNumero +
+                    ", OfLatitude='" + OfLatitude + '\'' +
+                    ", OfLongitude='" + OfLongitude + '\'' +
+                    ", OfEnderecoEncontrado='" + OfEnderecoEncontrado + '\'' +
+                    ", OfEmail='" + OfEmail + '\'' +
+                    '}';
         }
     }
 }

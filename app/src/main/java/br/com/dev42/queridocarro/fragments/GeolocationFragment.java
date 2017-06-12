@@ -2,6 +2,7 @@ package br.com.dev42.queridocarro.fragments;
 
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -40,8 +41,11 @@ import android.widget.Toast;
 
 import br.com.dev42.queridocarro.R;
 import br.com.dev42.queridocarro.activities.ListaOficinasActivity;
+import br.com.dev42.queridocarro.activities.MainActivity;
 import br.com.dev42.queridocarro.extra.HideKeyboard;
 import br.com.dev42.queridocarro.interfaces.MenuOficinasInterface;
+import br.com.dev42.queridocarro.interfaces.ServicoSelecionadoInterface;
+import br.com.dev42.queridocarro.model.Servico;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -69,6 +73,8 @@ public class GeolocationFragment extends Fragment implements LocationListener{
     private MenuOficinasInterface menuOficinasInterface;
 
     private Animation contrair, expandir;
+    private Servico servicoSelecionado;
+    private ServicoSelecionadoInterface servicoSelecionadoInterface;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -83,6 +89,12 @@ public class GeolocationFragment extends Fragment implements LocationListener{
         imgGeo.startAnimation(expandir);
 
         menuOficinasInterface = (MenuOficinasInterface)getActivity();
+
+        servicoSelecionadoInterface = (ServicoSelecionadoInterface)getActivity();
+
+//        servicoSelecionado = servicoSelecionadoInterface.getServicoSelecionado();
+//        if(servicoSelecionado != null)
+
 
 //        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 //            getActivity().getWindow().setSharedElementExitTransition(new ChangeBounds());
@@ -158,6 +170,14 @@ public class GeolocationFragment extends Fragment implements LocationListener{
                     intent.putExtra("CEP", "");
                     intent.putExtra("ENDERECO", "");
                     intent.putExtra("TIPO", 2);
+
+                    if(servicoSelecionadoInterface.getServicoSelecionado() != null)
+                        intent.putExtra("SERVICO", servicoSelecionadoInterface.getServicoSelecionado().getServCodigo());
+//                        Log.e("DEV42", servicoSelecionado.getServDescri());
+//                    else
+//                        intent.putExtra("SERVICO", 0);
+//                        Log.e("DEV42", "Servico null");
+
                     /*tipos
                     CidadeEstado = 1
                     LatLon = 2
@@ -330,4 +350,6 @@ public class GeolocationFragment extends Fragment implements LocationListener{
     public void onProviderDisabled(String provider) {
 
     }
+
+
 }

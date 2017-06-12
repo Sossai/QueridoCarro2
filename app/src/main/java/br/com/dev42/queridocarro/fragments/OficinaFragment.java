@@ -27,6 +27,8 @@ import android.widget.Toast;
 import br.com.dev42.queridocarro.R;
 import br.com.dev42.queridocarro.activities.ListaOficinasActivity;
 import br.com.dev42.queridocarro.interfaces.MenuOficinasInterface;
+import br.com.dev42.queridocarro.interfaces.ServicoSelecionadoInterface;
+import br.com.dev42.queridocarro.model.Servico;
 
 public class OficinaFragment extends Fragment implements LocationListener {
 
@@ -83,4 +85,5 @@ public class OficinaFragment extends Fragment implements LocationListener {
 
     @Override
     public void onProviderDisabled(String provider) {}
+
 }

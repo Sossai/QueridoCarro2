@@ -45,12 +45,12 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activities.PopUpLoastPassActivity"
-            android:theme="@style/AppTheme.CustomTheme"></activity>
-
-        <activity android:name=".activities.OficinaDetalheActivity"
+            android:theme="@style/AppTheme.CustomTheme" />
+        <activity
+            android:name=".activities.OficinaDetalheActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".activities.PopUpServicosActivity"></activity>
     </application>
 
 </manifest>

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import br.com.dev42.queridocarro.R;
+import br.com.dev42.queridocarro.model.Servico;
 
 /**
  * Created by sossai on 12/05/17.
@@ -19,14 +20,13 @@ import br.com.dev42.queridocarro.R;
 public class ServicoAdapter extends RecyclerView.Adapter<ServicoAdapter.MyViewHolder> {
 
 //    private String[] mDataset;
-    private List<String>  mlist;
+    private List<Servico>  mlist;
     private LayoutInflater mlayoutInflater;
 
-    public ServicoAdapter(Context c, List<String> mlist) {
+    public ServicoAdapter(Context c, List<Servico> mlist) {
         this.mlist = mlist;
         mlayoutInflater = (LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
-
 
     @Override
     public int getItemCount() {
@@ -36,6 +36,7 @@ public class ServicoAdapter extends RecyclerView.Adapter<ServicoAdapter.MyViewHo
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = mlayoutInflater.inflate(R.layout.list_servicos, parent , false);
+        //View v = mlayoutInflater.inflate(android.R.layout.simple_list_item_1, parent , false);
 
         MyViewHolder mvh = new MyViewHolder(v);
         return mvh;
@@ -43,7 +44,7 @@ public class ServicoAdapter extends RecyclerView.Adapter<ServicoAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder myViewHolder, int position) {
-        myViewHolder.tvServico.setText(mlist.get(position));
+        myViewHolder.tvServico.setText(mlist.get(position).getServDescri());
 
     }
 

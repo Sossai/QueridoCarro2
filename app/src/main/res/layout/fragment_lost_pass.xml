@@ -21,18 +21,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="PLACA"
+                app:backgroundTint="@color/colorAzulDestaque"
                 android:gravity="center"/>
+
             <EditText
                 android:id="@+id/lvlost_cnpj"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="CPF/CNPJ"
-                android:gravity="center"/>
-            <EditText
-                android:id="@+id/lv_lostemail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="E-MAIL"
+                android:digits="0123456789.-/"
+                app:backgroundTint="@color/colorAzulDestaque"
                 android:gravity="center"/>
         </LinearLayout>
 
@@ -45,7 +43,7 @@
             app:backgroundTint="@color/colorAzulDestaque"
             app:elevation="6dp"
             app:fabSize="mini"
-            android:src="@drawable/ic_close_128_white"
+            android:src="@drawable/ic_close_white"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"/>
     </RelativeLayout>

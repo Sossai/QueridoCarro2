@@ -81,55 +81,55 @@
         android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorBranco"
         android:clipToPadding="true"
-        android:background="@color/colorContraste"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/colorBranco"
             android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:background="@color/colorBranco">
+            android:focusableInTouchMode="true">
 
             <RelativeLayout
                 android:id="@+id/ll_group_tel"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingTop="16dp"
                 android:paddingBottom="16dp"
                 android:paddingLeft="28dp"
-                android:paddingRight="28dp">
+                android:paddingRight="28dp"
+                android:paddingTop="16dp">
 
                 <ImageView
                     android:id="@+id/iv_tel_det"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
+                    android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_telefone_128_green"
-                    android:layout_centerVertical="true"/>
+                    android:src="@drawable/ic_telefone_green" />
 
                 <TextView
                     android:id="@+id/tv_tel_number_det"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="(19) 32410133"
-                    android:textColor="@color/colorCinzaEscuro"
-                    android:paddingLeft="8dp"
-                    android:textSize="18sp"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
                     android:layout_marginRight="30dp"
                     android:layout_toRightOf="@id/iv_tel_det"
-                    android:layout_gravity="center"
-                    android:layout_centerVertical="true"/>
+                    android:paddingLeft="8dp"
+                    android:text="(19) 32410133"
+                    android:textColor="@color/colorCinzaEscuro"
+                    android:textSize="18sp" />
 
                 <ImageView
                     android:id="@+id/iv_opt_tel"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_option_grey"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_alignParentRight="true"
+                    android:layout_alignRight="@id/tv_tel_number_det"
                     android:layout_centerVertical="true"
-                    android:layout_alignRight="@id/tv_tel_number_det" />
+                    android:src="@drawable/ic_option_grey" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -137,39 +137,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/ll_group_tel"
-                android:paddingTop="16dp"
                 android:paddingBottom="16dp"
                 android:paddingLeft="28dp"
-                android:paddingRight="28dp">
+                android:paddingRight="28dp"
+                android:paddingTop="16dp">
 
                 <ImageView
                     android:id="@+id/iv_loc_det"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_geolocation_128_red"/>
+                    android:src="@drawable/ic_geolocation_red" />
 
                 <TextView
                     android:id="@+id/tv_end_det"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="30dp"
+                    android:layout_toRightOf="@id/iv_loc_det"
+                    android:paddingLeft="8dp"
                     android:text="Av Agnaldo Macedo 400, Campinas - SP"
                     android:textColor="@color/colorCinzaEscuro"
-                    android:paddingLeft="8dp"
-                    android:textSize="18sp"
-                    android:layout_marginRight="30dp"
-                    android:layout_gravity="center"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/iv_loc_det"/>
+                    android:textSize="18sp" />
 
                 <ImageView
                     android:id="@+id/iv_opt_geo"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_option_grey"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_alignParentRight="true"
+                    android:layout_alignRight="@id/tv_end_det"
                     android:layout_centerVertical="true"
-                    android:layout_alignRight="@id/tv_end_det" />
+                    android:src="@drawable/ic_option_grey" />
 
             </RelativeLayout>
 
@@ -179,63 +179,74 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/ll_group_geo"
                 android:orientation="horizontal"
-                android:paddingTop="16dp"
                 android:paddingBottom="16dp"
                 android:paddingLeft="28dp"
-                android:paddingRight="28dp">
+                android:paddingRight="28dp"
+                android:paddingTop="16dp">
 
                 <ImageView
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_mail_48_orange"/>
+                    android:src="@drawable/ic_mail_48_orange" />
+
                 <TextView
+                    android:id="@+id/tv_email_det"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingLeft="8dp"
                     android:text="testeemail@gmail.com"
                     android:textColor="@color/colorCinzaEscuro"
-                    android:paddingLeft="8dp"
-                    android:textSize="18sp"
-                    android:layout_gravity="center"/>
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/tv_servicos_prestados"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Serviços prestados :"
-                android:textColor="@color/colorPreto"
                 android:layout_below="@+id/ll_group_mail"
                 android:paddingBottom="8dp"
                 android:paddingLeft="28dp"
+                android:text="Serviços prestados :"
+                android:textColor="@color/colorPreto"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_servicos"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scrollbars="vertical"
+                android:layout_below="@id/tv_servicos_prestados"
                 android:paddingLeft="28dp"
-                android:layout_below="@id/tv_servicos_prestados">
+                android:scrollbars="vertical">
 
             </android.support.v7.widget.RecyclerView>
 
-            <include layout="@layout/barra_divisor"
-                android:layout_height="wrap_content"
+            <include
+                layout="@layout/barra_divisor"
                 android:layout_width="wrap_content"
-                android:layout_below="@id/ll_group_tel"/>
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_group_tel" />
 
-            <include layout="@layout/barra_divisor"
-                android:layout_height="wrap_content"
+            <include
+                layout="@layout/barra_divisor"
                 android:layout_width="wrap_content"
-                android:layout_below="@id/ll_group_geo"/>
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_group_geo" />
+
+            <include
+                android:id="@+id/frameload"
+                layout="@layout/frame_load"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone" />
         </RelativeLayout>
 
 
-
-
     </android.support.v4.widget.NestedScrollView>
+
 
 </android.support.design.widget.CoordinatorLayout>
 
@@ -298,7 +309,7 @@
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_telefone_128_green"/>
+                    android:src="@drawable/ic_telefone_green"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -324,7 +335,7 @@
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_geolocation_128_red"/>
+                    android:src="@drawable/ic_geolocation_red"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

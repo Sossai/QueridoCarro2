@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="br.com.dev42.queridocarro.activities.PopUpServicosActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_group_servicos_prestados"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/tv_servicos_prestados"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_group_mail"
+            android:text="Serviços prestados :"
+            android:textColor="@color/colorPreto"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_centerInParent="true"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btn_lservicos_prestados_close"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:clickable="true"
+            app:backgroundTint="@color/colorAzulDestaque"
+            android:layout_margin="8dp"
+            app:elevation="6dp"
+            app:fabSize="mini"
+            android:src="@drawable/ic_close_white"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_pop_servico"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="200dp"
+        android:layout_below="@id/rl_group_servicos_prestados">
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>
